@@ -11,12 +11,12 @@ getEmployees()
   });
 
 const addEmployee: Element | null = document.querySelector('#add-employee');
-const modalInfoEmployee: Element | null = document.querySelector('#modal-info-employee');
+const modalAddEmployee: Element | null = document.querySelector('#modal-add-employee');
 
 addEmployee?.addEventListener('click', event => {
-  modalInfoEmployee?.classList.toggle('hidden');
+  modalAddEmployee?.classList.toggle('hidden');
 });
 
-modalInfoEmployee?.addEventListener('click', event => {
-  modalInfoEmployee?.classList.toggle('hidden');
+modalAddEmployee?.addEventListener('click', event => {
+  modalAddEmployee?.classList.toggle('hidden');
 });

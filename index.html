@@ -34,6 +34,9 @@
             .card .header-primary {
                 @apply rounded-t-lg bg-blue-600 px-8 py-5 text-white font-bold text-xl
             }
+            .card .header-success {
+                @apply rounded-t-lg bg-green-600 px-8 py-5 text-white font-bold text-xl
+            }
             .card .body {
                 @apply px-8 py-5 bg-white
             }
@@ -69,6 +72,19 @@
             .btn-danger {
                 @apply rounded-lg bg-red-600 p-1 text-white hover:bg-red-700 scale-100 hover:scale-105 transition duration-200
             }
+            /***********************************/
+            .table-employee {
+                @apply w-full table-fixed
+            }
+            .table-employee tr {
+                @apply border border-gray-700
+            }
+            .table-employee .cell-head {
+                @apply border border-gray-700 bg-gray-200 text-gray-900 font-bold text-lg pl-4
+            }
+            .table-employee .cell {
+                @apply border border-gray-700
+            }
         }
     </style>
 </head>
@@ -94,41 +110,15 @@
         <div id="card-employee-info" class="z-30 card w-2/3">
             <div class="header-primary">Información empleado</div>
             <div id="employee-info" class="body">
-                <table class="w-full table-fixed">
-                    <tbody class="">
-                        <tr class="border border-gray-700">
-                            <td colspan="2" rowspan="4" class="border border-gray-700">
-                                <img id="employee-photo" src="" alt="">
-                            </td>
-                            <td class="border border-gray-700 bg-gray-200 text-gray-900 font-bold text-lg pl-4">Primer nombre</td>
-                            <td class="border border-gray-700 bg-gray-200 text-gray-900 font-bold text-lg pl-4">Segundo nombre</td>
-                        </tr>
-                        <tr class="border border-gray-700">
-                            <td id="employee-first-name" class="border border-gray-700"></td>
-                            <td id="employee-second-name" class="border border-gray-700"></td>
-                        </tr>
-                        <tr class="border border-gray-700">
-                            <td class="border border-gray-700 bg-gray-200 text-gray-900 font-bold text-lg pl-4">Primer apellido</td>
-                            <td class="border border-gray-700 bg-gray-200 text-gray-900 font-bold text-lg pl-4">Segundo apellido</td>
-                        </tr>
-                        <tr class="border border-gray-700">
-                            <td id="employee-last-name" class="border border-gray-700"></td>
-                            <td id="employee-second-last-name" class="border border-gray-700"></td>
-                        </tr>
-                        <tr class="border border-gray-700">
-                            <td class="border border-gray-700 bg-gray-200 text-gray-900 font-bold text-lg pl-4">Num. identificación</td>
-                            <td class="border border-gray-700 bg-gray-200 text-gray-900 font-bold text-lg pl-4">Genero</td>
-                            <td class="border border-gray-700 bg-gray-200 text-gray-900 font-bold text-lg pl-4">Fec. nacimiento</td>
-                            <td class="border border-gray-700 bg-gray-200 text-gray-900 font-bold text-lg pl-4">Edad</td>
-                        </tr>
-                        <tr class="border border-gray-700">
-                            <td id="employee-cc" class="border border-gray-700"></td>
-                            <td id="employee-gender" class="border border-gray-700"></td>
-                            <td id="employee-birthdate" class="border border-gray-700"></td>
-                            <td id="employee-age" class="border border-gray-700"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                
+            </div>
+        </div>
+    </div>
+    <div id="modal-add-employee" class="absolute hidden top-0 z-20 flex justify-center items-center w-full h-screen bg-black/25">
+        <div id="card-employee-info" class="z-30 card w-2/3">
+            <div class="header-success">Agregar empleado</div>
+            <div id="employee-info" class="body">
+                
             </div>
         </div>
     </div>

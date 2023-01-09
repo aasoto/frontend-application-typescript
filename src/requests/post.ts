@@ -7,28 +7,45 @@ interface NewEmployee {
   last_name: string;
   second_last_name: string | null;
   gender: string | null;
-  birthdate: string | Date;
-  profile: string | null;
+  birthdate: string;
+  profile_photo: File | undefined;
 }
 
-export const saveNewEmployee = async() => {
+export const saveNewEmployee = async(
+  cc: string,
+  firstName: string,
+  secondName: string | null,
+  lastName: string,
+  secondLastName: string | null,
+  gender: string | null,
+  birthdate: string,
+  profile: File | undefined
+) => {
+  
   const data: NewEmployee = {
-    cc: '23892183',
-    first_name: 'Andrés',
-    second_name: 'Alfredo',
-    last_name: 'Soto',
-    second_last_name: null,
-    gender: 'm',
-    birthdate: '1997-02-13',
-    profile: null
+    cc: cc,
+    first_name: firstName,
+    second_name: secondName,
+    last_name: lastName,
+    second_last_name: secondLastName,
+    gender: gender,
+    birthdate: birthdate,
+    profile_photo: profile
   }
+
   await axios.post(
     'http://127.0.0.1:8000/api/employee',
     data,
     {
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json, multipart/form-data"
       }
     }
-  )
+  ).then( resp => {
+    console.log(resp);
+  }).catch( error => {
+    console.error(error);
+  }).finally( () => {
+    console.log('Guardado terminado')
+  });
 }

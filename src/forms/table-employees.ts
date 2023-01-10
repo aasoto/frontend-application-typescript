@@ -1,12 +1,31 @@
 import { Employees } from "../interfaces/employees";
 import { genders, tHeaders } from "../prelim-data/data";
 import { eye, pencilSquare, trash } from "../prelim-data/icons";
-import { getEmployee } from '../requests/get';
+import { getEmployee, getEmployees } from '../requests/get';
 import { showModalEmployee } from "./modal-employee";
 
-export const showEmployees = (data: Employees):void => {
+export const makeTableEmployees = (url: string = 'http://127.0.0.1:8000/api/employee') => {
+  getEmployees(url)
+  .then(resp => {
+    showEmployees(resp);
+  }).catch(error => {
+    console.error(error);
+  }).finally(() => {
+    console.log('Consulta terminada...');
+  });
+}
+
+const showEmployees = (data: Employees):void => {
   
-  const cardBodyEmployees = document.querySelector('#employees-list')
+  const cardBodyEmployees = document.getElementById('employees-list');
+
+  /** Borrar elementos del cuerpo de la card */
+  while (cardBodyEmployees?.firstChild) {
+    cardBodyEmployees.removeChild(cardBodyEmployees.firstChild);
+  }
+
+  /** ARMAR TABLA */
+  /** Cabecera de la tabla */
   const tableEmployees = document.createElement('table');
   cardBodyEmployees?.appendChild(tableEmployees);
 
@@ -19,6 +38,7 @@ export const showEmployees = (data: Employees):void => {
     tHead.appendChild(tHeadCol);
   });
 
+  /** Cuerpo de la tabla */
   const tBody = document.createElement('tbody');
   tableEmployees.appendChild(tBody);
 
@@ -53,7 +73,33 @@ export const showEmployees = (data: Employees):void => {
     colActions.appendChild(divActionsFull);
     tRow.append(colId, colCC, colName, colGender, colBirthdate, colActions);
   });
+
+  /** Opciones de paginación */
+  const pagination = document.createElement('div');
+  pagination.classList.add('line-center-items');
+  pagination.classList.add('mt-5')
+  cardBodyEmployees?.appendChild(pagination);
   
+  data.links.forEach(element => {
+    const {url, label, active} = element;
+
+    const button: HTMLButtonElement = document.createElement('button');
+    pagination.appendChild(button);
+
+    button.innerHTML = label;
+    button.classList.add('btn-pagination');
+    if (active) {
+      button.setAttribute('status', 'true');
+    } else {
+      button.setAttribute('status', 'false');
+    }
+
+    button.addEventListener('click', event => {
+      if (url) {
+        makeTableEmployees(url);
+      }
+    });
+  });
 }
 
 const getGender = (gender: string): string => {

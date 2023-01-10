@@ -1,16 +1,9 @@
 import { getEmployees } from './requests/get';
-import { showEmployees } from './forms/table-employees';
+import { makeTableEmployees } from './forms/table-employees';
 import { saveNewEmployee } from './requests/post';
 import { Employee } from './classes/Employee';
 
-getEmployees()
-  .then(resp => {
-    showEmployees(resp);
-  }).catch(error => {
-    console.error(error);
-  }).finally(() => {
-    console.log('Consulta terminada...');
-  });
+makeTableEmployees();
 
 const addEmployee: Element | null = document.querySelector('#add-employee');
 const modalAddEmployee: Element | null = document.querySelector('#modal-add-employee');

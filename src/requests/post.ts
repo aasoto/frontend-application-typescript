@@ -1,4 +1,5 @@
 import axios from "axios"
+import { sendSuccess } from "../forms/alerts";
 
 interface NewEmployee {
   cc: string;
@@ -42,7 +43,11 @@ export const saveNewEmployee = async(
       }
     }
   ).then( resp => {
-    console.log(resp);
+    if (resp.status == 200) {
+      sendSuccess();
+    } else {
+      console.log(resp);
+    }
   }).catch( error => {
     console.error(error);
   }).finally( () => {

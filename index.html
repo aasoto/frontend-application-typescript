@@ -37,6 +37,9 @@
             .card .header-success {
                 @apply rounded-t-lg bg-green-600 px-8 py-5 text-white font-bold text-xl
             }
+            .card .header-warning {
+                @apply rounded-t-lg bg-yellow-600 px-8 py-5 text-white font-bold text-xl
+            }
             .card .body {
                 @apply px-8 py-5 bg-white
             }
@@ -78,6 +81,9 @@
             .btn-pagination {
                 @apply bg-gray-100 px-4 py-3 text-gray-800 font-normal hover:font-medium hover:bg-gray-200 hover:text-gray-900 border hover:border-2 border-gray-800 hover:border-gray-900 scale-100 hover:scale-105 transition duration-200 shadow-none hover:shadow-lg
             }
+            .btn-footer-success {
+                @apply px-5 py-3 rounded-md bg-green-600 text-white font-bold
+            }
             /***********************************/
             .table-employee {
                 @apply w-full table-fixed
@@ -94,6 +100,13 @@
             /*********************************/
             .line-center-items {
                 @apply flex justify-center items-center
+            }
+            .grid-form {
+                @apply grid grid-cols-2 gap-3
+            }
+            /*********************************/
+            .input-normal {
+                @apply w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2
             }
         }
     </style>
@@ -160,8 +173,9 @@
                 </div>
             </div>
         </div>
-        <div id="employee-info" class="body">
-            <div class="grid grid-cols-2 gap-3">
+        <div id="employee-add" class="body">
+            
+            <!-- <div class="grid grid-cols-2 gap-3">
                 <div class="col-span-2">
                     <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="number" id="cc" name="cc" placeholder="Num. Identificación" value="">
                 </div>
@@ -192,13 +206,11 @@
                 <div class="col-span-2">
                     <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="file" name="profile-photo" id="profile-photo" title="Foto de perfil">
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="footer">
-            <div class="flex justify-end items-center">
-                <button id="send-new-employee" class="px-5 py-3 rounded-md bg-green-600 text-white font-bold">
-                    Guardar
-                </button>
+            <div id="footer-add" class="flex justify-end items-center">
+                
             </div>
         </div>
     </div>

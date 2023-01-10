@@ -7,15 +7,36 @@ makeTableEmployees();
 
 const addEmployee: Element | null = document.querySelector('#add-employee');
 const modalAddEmployee: Element | null = document.querySelector('#modal-add-employee');
+const cardEmployeeAdd: Element | null = document.querySelector('#card-employee-add');
 const closeAddEmployee: Element | null = document.querySelector('#close-add-employee');
 const sendNewEmployee: Element | null =  document.querySelector('#send-new-employee');
+const closeShowEmployee: Element | null = document.querySelector('#close-show-employee');
+const modalInfoEmployee: Element | null = document.querySelector('#modal-info-employee');
+const cardEmployeeInfo: Element | null = document.querySelector('#card-employee-info');
 
 addEmployee?.addEventListener('click', event => {
   modalAddEmployee?.classList.toggle('hidden');
+  cardEmployeeAdd?.classList.toggle('hidden');
 });
 
 closeAddEmployee?.addEventListener('click', event => {
   modalAddEmployee?.classList.toggle('hidden');
+  cardEmployeeAdd?.classList.toggle('hidden');
+});
+
+modalAddEmployee?.addEventListener('click', event => {
+  modalAddEmployee?.classList.toggle('hidden');
+  cardEmployeeAdd?.classList.toggle('hidden');
+});
+
+modalInfoEmployee?.addEventListener('click', event => {
+  modalInfoEmployee?.classList.toggle('hidden');
+  cardEmployeeInfo?.classList.toggle('hidden');
+});
+
+closeShowEmployee?.addEventListener('click', event => {
+  modalInfoEmployee?.classList.toggle('hidden');
+  cardEmployeeInfo?.classList.toggle('hidden');
 });
 
 sendNewEmployee?.addEventListener('click', event => {

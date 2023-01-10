@@ -119,68 +119,86 @@
             </div>
         </div>
     </div>
-    <div id="modal-info-employee" class="absolute hidden top-0 z-20 flex justify-center items-center w-full h-screen bg-black/25">
-        <div id="card-employee-info" class="z-30 card w-2/3">
-            <div class="header-primary">Información empleado</div>
-            <div id="employee-info" class="body">
-                
+    <div id="modal-info-employee" class="absolute hidden top-0 z-20 flex justify-center items-center w-full h-full bg-black/25">
+    </div>
+    <div id="card-employee-info" class="fixed hidden z-30 inset-x-0 top-14 mx-auto card w-2/3">
+        <div class="header-primary">
+            <div class="grid grid-cols-12 gap-3">
+                <div class="col-span-11">
+                    <h1>Información empleado</h1>
+                </div>
+                <div class="col-span-1">
+                    <svg id="close-show-employee" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer font-bold">
+                        <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                    </svg>                          
+                </div>
+            </div>
+        </div>
+        <div id="employee-info" class="body">
+            
+        </div>
+        <div class="footer">
+            <div class="flex justify-end items-center">
+                <button class="px-5 py-3 rounded-md bg-blue-600 text-white font-bold">
+                    Imprimir
+                </button>
             </div>
         </div>
     </div>
-    <div id="modal-add-employee" class="absolute hidden top-0 z-20 flex justify-center items-center w-full h-screen bg-black/25">
-        <div id="card-employee-info" class="z-30 card w-2/3">
-            <div class="header-success">
-                <div class="grid grid-cols-12 gap-3">
-                    <div class="col-span-11">
-                        <h1>Agregar empleado</h1>
-                    </div>
-                    <div class="col-span-1">
-                        <svg id="close-add-employee" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer font-bold">
-                            <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
-                        </svg>                          
-                    </div>
+    <div id="modal-add-employee" class="absolute hidden top-0 z-20 flex justify-center items-center w-full h-full bg-black/25">
+    </div>
+    <div id="card-employee-add" class="fixed hidden z-30 inset-x-0 top-14 mx-auto card w-2/3">
+        <div class="header-success">
+            <div class="grid grid-cols-12 gap-3">
+                <div class="col-span-11">
+                    <h1>Agregar empleado</h1>
+                </div>
+                <div class="col-span-1">
+                    <svg id="close-add-employee" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer font-bold">
+                        <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                    </svg>                          
                 </div>
             </div>
-            <div id="employee-info" class="body">
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="col-span-2">
-                        <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="number" id="cc" name="cc" placeholder="Num. Identificación" value="">
-                    </div>
-                    <div class="col-span-1">
-                        <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="first-name" name="first-name" placeholder="Primer nombre">
-                    </div>
-                    <div class="col-span-1">
-                        <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="second-name" name="second-name" placeholder="Segundo nombre">
-                    </div>
-                    <div class="col-span-1">
-                        <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="last-name" name="last-name" placeholder="Primer apellido">
-                    </div>
-                    <div class="col-span-1">
-                        <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="second-last-name" name="second-last-name" placeholder="Segundo apellido">
-                    </div>
-                    <div class="col-span-1">
-                        <select class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" name="gender" id="gender">
-                            <option value="">Genero... </option>
-                            <option value="m">Másculino</option>
-                            <option value="f">Femenino</option>
-                            <option value="o">Otro</option>
-                            <option value="ne">No especifico</option>
-                        </select>
-                    </div>
-                    <div class="col-span-1">
-                        <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="date" name="birthdate" id="birthdate" title="Fecha de nacimiento">
-                    </div>
-                    <div class="col-span-2">
-                        <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="file" name="profile-photo" id="profile-photo" title="Foto de perfil">
-                    </div>
+        </div>
+        <div id="employee-info" class="body">
+            <div class="grid grid-cols-2 gap-3">
+                <div class="col-span-2">
+                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="number" id="cc" name="cc" placeholder="Num. Identificación" value="">
+                </div>
+                <div class="col-span-1">
+                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="first-name" name="first-name" placeholder="Primer nombre">
+                </div>
+                <div class="col-span-1">
+                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="second-name" name="second-name" placeholder="Segundo nombre">
+                </div>
+                <div class="col-span-1">
+                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="last-name" name="last-name" placeholder="Primer apellido">
+                </div>
+                <div class="col-span-1">
+                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="second-last-name" name="second-last-name" placeholder="Segundo apellido">
+                </div>
+                <div class="col-span-1">
+                    <select class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" name="gender" id="gender">
+                        <option value="">Genero... </option>
+                        <option value="m">Másculino</option>
+                        <option value="f">Femenino</option>
+                        <option value="o">Otro</option>
+                        <option value="ne">No especifico</option>
+                    </select>
+                </div>
+                <div class="col-span-1">
+                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="date" name="birthdate" id="birthdate" title="Fecha de nacimiento">
+                </div>
+                <div class="col-span-2">
+                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="file" name="profile-photo" id="profile-photo" title="Foto de perfil">
                 </div>
             </div>
-            <div class="footer">
-                <div class="flex justify-end items-center">
-                    <button id="send-new-employee" class="px-5 py-3 rounded-md bg-green-600 text-white font-bold">
-                        Guardar
-                    </button>
-                </div>
+        </div>
+        <div class="footer">
+            <div class="flex justify-end items-center">
+                <button id="send-new-employee" class="px-5 py-3 rounded-md bg-green-600 text-white font-bold">
+                    Guardar
+                </button>
             </div>
         </div>
     </div>

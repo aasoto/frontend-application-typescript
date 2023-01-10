@@ -121,8 +121,10 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   //btnWatch.setAttribute('id-employee', `${id}`);
   btnWatch.addEventListener('click', event => {
     const modalInfoEmployee: Element | null = document.querySelector('#modal-info-employee');
+    const cardEmployeeInfo: Element | null = document.querySelector('#card-employee-info');
     modalInfoEmployee?.classList.toggle('hidden');
-    
+    cardEmployeeInfo?.classList.toggle('hidden');
+
     getEmployee(id)
       .then( resp => {
         showModalEmployee(resp);

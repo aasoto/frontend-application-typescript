@@ -27,46 +27,55 @@ export type FormEmployee = {
   id: string;
   placeholder: string;
   type: string;
+  value: string | null;
 }[]
 
 export const fields: FormEmployee = [{
   cols: 2,
   id: 'cc',
   placeholder: 'Num. identificación',
-  type: 'number'
+  type: 'number',
+  value: ''
 },{
   cols: 1,
-  id: 'first-name',
+  id: 'first_name',
   placeholder: 'Primer nombre',
-  type: 'text'
+  type: 'text',
+  value: ''
 },{
   cols: 1,
-  id: 'second-name',
+  id: 'second_name',
   placeholder: 'Segundo nombre',
-  type: 'text'
+  type: 'text',
+  value: ''
 },{
   cols: 1,
-  id: 'last-name',
+  id: 'last_name',
   placeholder: 'Primer apellido',
-  type: 'text'
+  type: 'text',
+  value: ''
 },{
   cols: 1,
-  id: 'second-last-name',
+  id: 'second_last_name',
   placeholder: 'Segundo apellido',
-  type: 'text'
+  type: 'text',
+  value: ''
 },{
   cols: 1,
   id: 'gender',
   placeholder: 'genero',
-  type: 'select'
+  type: 'select',
+  value: ''
 },{
   cols: 1,
   id: 'birthdate',
   placeholder: 'Fecha de nacimiento',
-  type: 'date'
+  type: 'date',
+  value: ''
 },{
   cols: 2,
-  id: 'profile-photo',
+  id: 'profile_photo',
   placeholder: 'Foto de perfil',
-  type: 'file'
+  type: 'file',
+  value: ''
 }]

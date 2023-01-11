@@ -1,8 +1,8 @@
-import axios from "axios"
-import { sendSuccess } from "../forms/alerts";
+import axios from "axios";
 import { NewEmployee } from "../interfaces/newEmployee";
 
-export const saveNewEmployee = async(
+export const updateEmployee = async(
+  id: number,
   cc: string,
   firstName: string,
   secondName: string | null,
@@ -12,7 +12,6 @@ export const saveNewEmployee = async(
   birthdate: string,
   profile: File | undefined
 ) => {
-  
   const data: NewEmployee = {
     cc: cc,
     first_name: firstName,
@@ -24,8 +23,8 @@ export const saveNewEmployee = async(
     profile_photo: profile
   }
 
-  await axios.post(
-    'http://127.0.0.1:8000/api/employee',
+  await axios.put(
+    `http://127.0.0.1:8000/api/employee/${id}`,
     data,
     {
       headers: {
@@ -34,7 +33,8 @@ export const saveNewEmployee = async(
     }
   ).then( resp => {
     if (resp.status == 200) {
-      sendSuccess();
+      // sendSuccess();
+      console.log(resp);
     } else {
       console.log(resp);
     }

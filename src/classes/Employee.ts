@@ -1,4 +1,5 @@
 import { saveNewEmployee } from "../requests/post";
+import { updateEmployee } from "../requests/put";
 
 export class Employee {
 
@@ -16,5 +17,10 @@ export class Employee {
   saveEmployee (): void {
     console.log(this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
     saveNewEmployee(this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
+  }
+
+  editEmployee (id: number): void {
+    console.log(this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
+    updateEmployee(id, this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
   }
 }

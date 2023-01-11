@@ -2,6 +2,7 @@ import { Employees } from "../interfaces/employees";
 import { genders, tHeaders } from "../prelim-data/data";
 import { eye, pencilSquare, trash } from "../prelim-data/icons";
 import { getEmployee, getEmployees } from '../requests/get';
+import { showModalEditEmployee } from "./modal-edit-employee";
 import { showModalEmployee } from "./modal-employee";
 
 export const makeTableEmployees = (url: string = 'http://127.0.0.1:8000/api/employee') => {
@@ -138,6 +139,22 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   const btnEdit = document.createElement('button');
   btnEdit.classList.add('btn-warning');
   btnEdit.innerHTML = pencilSquare;
+
+  btnEdit.addEventListener('click', event => {
+    const modalEditEmployee: Element | null = document.querySelector('#modal-edit-employee');
+    const cardEmployeeEdit: Element | null = document.querySelector('#card-employee-edit');
+    modalEditEmployee?.classList.toggle('hidden');
+    cardEmployeeEdit?.classList.toggle('hidden');
+
+    getEmployee(id)
+      .then( resp => {
+        showModalEditEmployee(resp);
+      }).catch( error => {
+        console.error(error);
+      }).finally( () => {
+        console.log('Empleado consultado');
+      });
+  });
 
   const btnDelete = document.createElement('button');
   btnDelete.classList.add('btn-danger');

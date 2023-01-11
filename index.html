@@ -38,7 +38,7 @@
                 @apply rounded-t-lg bg-green-600 px-8 py-5 text-white font-bold text-xl
             }
             .card .header-warning {
-                @apply rounded-t-lg bg-yellow-600 px-8 py-5 text-white font-bold text-xl
+                @apply rounded-t-lg bg-yellow-400 px-8 py-5 text-black font-bold text-xl
             }
             .card .body {
                 @apply px-8 py-5 bg-white
@@ -83,6 +83,9 @@
             }
             .btn-footer-success {
                 @apply px-5 py-3 rounded-md bg-green-600 text-white font-bold
+            }
+            .btn-footer-warning {
+                @apply px-5 py-3 rounded-md bg-yellow-400 text-black font-bold
             }
             /***********************************/
             .table-employee {
@@ -175,41 +178,33 @@
         </div>
         <div id="employee-add" class="body">
             
-            <!-- <div class="grid grid-cols-2 gap-3">
-                <div class="col-span-2">
-                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="number" id="cc" name="cc" placeholder="Num. Identificación" value="">
-                </div>
-                <div class="col-span-1">
-                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="first-name" name="first-name" placeholder="Primer nombre">
-                </div>
-                <div class="col-span-1">
-                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="second-name" name="second-name" placeholder="Segundo nombre">
-                </div>
-                <div class="col-span-1">
-                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="last-name" name="last-name" placeholder="Primer apellido">
-                </div>
-                <div class="col-span-1">
-                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="text" id="second-last-name" name="second-last-name" placeholder="Segundo apellido">
-                </div>
-                <div class="col-span-1">
-                    <select class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" name="gender" id="gender">
-                        <option value="">Genero... </option>
-                        <option value="m">Másculino</option>
-                        <option value="f">Femenino</option>
-                        <option value="o">Otro</option>
-                        <option value="ne">No especifico</option>
-                    </select>
-                </div>
-                <div class="col-span-1">
-                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="date" name="birthdate" id="birthdate" title="Fecha de nacimiento">
-                </div>
-                <div class="col-span-2">
-                    <input class="w-full rounded-md border border-gray-600 text-gray-600 px-4 py-2" type="file" name="profile-photo" id="profile-photo" title="Foto de perfil">
-                </div>
-            </div> -->
         </div>
         <div class="footer">
             <div id="footer-add" class="flex justify-end items-center">
+                
+            </div>
+        </div>
+    </div>
+    <div id="modal-edit-employee" class="absolute hidden top-0 z-20 flex justify-center items-center w-full h-full bg-black/25">
+    </div>
+    <div id="card-employee-edit" class="fixed hidden z-30 inset-x-0 top-14 mx-auto card w-2/3">
+        <div class="header-warning">
+            <div class="grid grid-cols-12 gap-3">
+                <div class="col-span-11">
+                    <h1>Editar empleado</h1>
+                </div>
+                <div class="col-span-1">
+                    <svg id="close-add-employee" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer font-bold">
+                        <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                    </svg>                          
+                </div>
+            </div>
+        </div>
+        <div id="employee-edit" class="body">
+            
+        </div>
+        <div class="footer">
+            <div id="footer-edit" class="flex justify-end items-center">
                 
             </div>
         </div>

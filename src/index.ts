@@ -20,7 +20,7 @@ addEmployee?.addEventListener('click', event => {
     employeeAdd.removeChild(employeeAdd.firstChild);
   }
 
-  employeeAdd?.appendChild(formEmployee());
+  employeeAdd?.appendChild(formEmployee(null));
 
   const footerAdd = document.getElementById('footer-add');
   while (footerAdd?.firstChild) {
@@ -65,13 +65,13 @@ const actionSend = (btn: HTMLButtonElement) => {
   btn.addEventListener('click', event => {
     
     const cc: HTMLInputElement = (<HTMLInputElement>document.getElementById('cc'));
-    const firstName: HTMLInputElement = (<HTMLInputElement>document.getElementById('first-name'));
-    const secondName: HTMLInputElement = (<HTMLInputElement>document.getElementById('second-name'));
-    const lastName: HTMLInputElement = (<HTMLInputElement>document.getElementById('last-name'));
-    const secondLastName: HTMLInputElement = (<HTMLInputElement>document.getElementById('second-last-name'));
+    const firstName: HTMLInputElement = (<HTMLInputElement>document.getElementById('first_name'));
+    const secondName: HTMLInputElement = (<HTMLInputElement>document.getElementById('second_name'));
+    const lastName: HTMLInputElement = (<HTMLInputElement>document.getElementById('last_name'));
+    const secondLastName: HTMLInputElement = (<HTMLInputElement>document.getElementById('second_last_name'));
     const gender: HTMLSelectElement = (<HTMLSelectElement>document.getElementById('gender'));
     const birthdate: HTMLInputElement = (<HTMLInputElement>document.getElementById('birthdate'));
-    const profilePhoto: HTMLInputElement = (<HTMLInputElement>document.getElementById('profile-photo'));
+    const profilePhoto: HTMLInputElement = (<HTMLInputElement>document.getElementById('profile_photo'));
     const fileProfilePhoto = profilePhoto.files;
     
     console.log(fileProfilePhoto?.[0]);

@@ -1,4 +1,4 @@
-import { saveNewEmployee } from "../requests/post";
+import { saveNewEmployee, updateProfilePhotoEmployee } from "../requests/post";
 import { putHTTPFunction, updateEmployee } from "../requests/put";
 
 export class Employee {
@@ -21,6 +21,6 @@ export class Employee {
 
   editEmployee (id: number): void {
     console.log(this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
-    updateEmployee(id, this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
+    updateProfilePhotoEmployee(id, this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
   }
 }

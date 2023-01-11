@@ -13,6 +13,9 @@ const closeAddEmployee: Element | null = document.querySelector('#close-add-empl
 const closeShowEmployee: Element | null = document.querySelector('#close-show-employee');
 const modalInfoEmployee: Element | null = document.querySelector('#modal-info-employee');
 const cardEmployeeInfo: Element | null = document.querySelector('#card-employee-info');
+const closeEditEmployee = document.querySelector('#close-edit-employee');
+const modalEditEmployee = document.querySelector('#modal-edit-employee');
+const cardEmployeeEdit = document.querySelector('#card-employee-edit');
 
 addEmployee?.addEventListener('click', event => {
   const employeeAdd = document.getElementById('employee-add');
@@ -58,6 +61,16 @@ modalInfoEmployee?.addEventListener('click', event => {
 closeShowEmployee?.addEventListener('click', event => {
   modalInfoEmployee?.classList.toggle('hidden');
   cardEmployeeInfo?.classList.toggle('hidden');
+});
+
+closeEditEmployee?.addEventListener('click', event => {
+  modalEditEmployee?.classList.toggle('hidden');
+  cardEmployeeEdit?.classList.toggle('hidden');
+});
+
+modalEditEmployee?.addEventListener('click', event => {
+  modalEditEmployee?.classList.toggle('hidden');
+  cardEmployeeEdit?.classList.toggle('hidden');
 });
 
 const actionSend = (btn: HTMLButtonElement) => {

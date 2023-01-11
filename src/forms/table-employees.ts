@@ -141,6 +141,13 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   btnEdit.innerHTML = pencilSquare;
 
   btnEdit.addEventListener('click', event => {
+    const employeeEdit = document.getElementById('employee-edit');
+
+    /** Borrar elementos del cuerpo de la card */
+    while (employeeEdit?.firstChild) {
+      employeeEdit.removeChild(employeeEdit.firstChild);
+    }
+
     const modalEditEmployee: Element | null = document.querySelector('#modal-edit-employee');
     const cardEmployeeEdit: Element | null = document.querySelector('#card-employee-edit');
     modalEditEmployee?.classList.toggle('hidden');

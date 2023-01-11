@@ -1,5 +1,6 @@
 import axios from "axios";
-import { NewEmployee } from "../interfaces/newEmployee";
+import { editSuccess } from "../forms/alerts";
+import { UpdateEmployee } from "../interfaces/updateEmployee";
 
 export const updateEmployee = async(
   id: number,
@@ -10,9 +11,9 @@ export const updateEmployee = async(
   secondLastName: string | null,
   gender: string | null,
   birthdate: string,
-  profile: File | undefined
+  profile: string | undefined
 ) => {
-  const data: NewEmployee = {
+  const data: UpdateEmployee = {
     cc: cc,
     first_name: firstName,
     second_name: secondName,
@@ -20,9 +21,11 @@ export const updateEmployee = async(
     second_last_name: secondLastName,
     gender: gender,
     birthdate: birthdate,
-    profile_photo: profile
+    profile_photo: profile,
+    escenario: 'app'
   }
   console.log('data: ', data);
+  console.log(profile);
   await axios.put(
     `http://127.0.0.1:8000/api/employee/${id}`,
     JSON.stringify(data),
@@ -33,7 +36,7 @@ export const updateEmployee = async(
     }
   ).then( resp => {
     if (resp.status == 200) {
-      // sendSuccess();
+      editSuccess();
       console.log(resp);
     } else {
       console.log(resp);

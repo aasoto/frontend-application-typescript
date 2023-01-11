@@ -3,6 +3,7 @@ import { Employee as EmployeeInterface } from "../interfaces/employee";
 import { formEmployee } from "./form-employee";
 
 export const showModalEditEmployee = (data: EmployeeInterface) => {
+
   const employeeEdit = document.querySelector('#employee-edit');
 
   const formEditEmployee: HTMLDivElement = formEmployee(data);
@@ -11,6 +12,10 @@ export const showModalEditEmployee = (data: EmployeeInterface) => {
 
   const footerEdit = document.querySelector('#footer-edit');
 
+  /** Borrar elementos del footer de la card */
+  while (footerEdit?.firstChild) {
+    footerEdit.removeChild(footerEdit.firstChild);
+  }
   const btnUpdate = document.createElement('button');
   btnUpdate.classList.add('btn-footer-warning');
   btnUpdate.id = 'update-employee';

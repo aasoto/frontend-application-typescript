@@ -5,6 +5,6 @@ export interface NewEmployee {
   last_name: string;
   second_last_name: string | null;
   gender: string | null;
-  birthdate: string;
+  birthdate: string | Date;
   profile_photo: File | undefined;
 }

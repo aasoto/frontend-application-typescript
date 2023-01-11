@@ -25,6 +25,7 @@ export const showModalEditEmployee = (data: EmployeeInterface) => {
     const secondLastName: HTMLInputElement = (<HTMLInputElement>document.getElementById('second_last_name'));
     const gender: HTMLSelectElement = (<HTMLSelectElement>document.getElementById('gender'));
     const birthdate: HTMLInputElement = (<HTMLInputElement>document.getElementById('birthdate'));
+    console.log(birthdate.value);
     const profilePhoto: HTMLInputElement = (<HTMLInputElement>document.getElementById('profile_photo'));
     const fileProfilePhoto = profilePhoto.files;
     

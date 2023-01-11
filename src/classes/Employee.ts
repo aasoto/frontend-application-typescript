@@ -1,5 +1,5 @@
 import { saveNewEmployee } from "../requests/post";
-import { updateEmployee } from "../requests/put";
+import { putHTTPFunction, updateEmployee } from "../requests/put";
 
 export class Employee {
 

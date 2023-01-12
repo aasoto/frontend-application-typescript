@@ -1,7 +1,9 @@
 import { Employees } from "../interfaces/employees";
 import { genders, tHeaders } from "../prelim-data/data";
 import { eye, pencilSquare, trash } from "../prelim-data/icons";
+import { deleteEmployee } from "../requests/delete";
 import { getEmployee, getEmployees } from '../requests/get';
+import { deleteSuccess } from "./alerts";
 import { showModalEditEmployee } from "./modal-edit-employee";
 import { showModalEmployee } from "./modal-employee";
 
@@ -166,6 +168,20 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   const btnDelete = document.createElement('button');
   btnDelete.classList.add('btn-danger');
   btnDelete.innerHTML = trash;
+
+  btnDelete.addEventListener('click', event => {
+    deleteEmployee(id)
+    .then( resp => {
+      console.log(resp);
+      if (resp.status == 'delete') {
+        deleteSuccess();
+      }
+    }).catch( error => {
+      console.error(error);
+    }).finally( () => {
+      console.log('Eliminación empleado finalizada...');
+    });
+  });
 
   action.append(btnWatch, btnEdit, btnDelete);
 

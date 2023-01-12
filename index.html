@@ -40,6 +40,9 @@
             .card .header-warning {
                 @apply rounded-t-lg bg-yellow-400 px-8 py-5 text-black font-bold text-xl
             }
+            .card .header-danger {
+                @apply rounded-t-lg bg-red-600 px-8 py-5 text-white font-bold text-xl
+            }
             .card .body {
                 @apply px-8 py-5 bg-white
             }
@@ -81,11 +84,17 @@
             .btn-pagination {
                 @apply bg-gray-100 px-4 py-3 text-gray-800 font-normal hover:font-medium hover:bg-gray-200 hover:text-gray-900 border hover:border-2 border-gray-800 hover:border-gray-900 scale-100 hover:scale-105 transition duration-200 shadow-none hover:shadow-lg
             }
+            .btn-footer-primary {
+                @apply px-5 py-3 rounded-md bg-blue-600 text-white font-bold
+            }
             .btn-footer-success {
                 @apply px-5 py-3 rounded-md bg-green-600 text-white font-bold
             }
             .btn-footer-warning {
                 @apply px-5 py-3 rounded-md bg-yellow-400 text-black font-bold
+            }
+            .btn-footer-danger {
+                @apply px-5 py-3 rounded-md bg-red-600 text-white font-bold
             }
             /***********************************/
             .table-employee {
@@ -205,6 +214,30 @@
         </div>
         <div class="footer">
             <div id="footer-edit" class="flex justify-end items-center">
+                
+            </div>
+        </div>
+    </div>
+    <div id="modal-deleted-employee" class="absolute hidden top-0 z-20 flex justify-center items-center w-full h-full bg-black/25">
+    </div>
+    <div id="card-employee-deleted" class="fixed hidden z-30 inset-x-0 top-14 mx-auto card w-2/3">
+        <div class="header-danger">
+            <div class="grid grid-cols-12 gap-3">
+                <div class="col-span-11">
+                    <h1>Empleado eliminado</h1>
+                </div>
+                <div class="col-span-1">
+                    <svg id="close-edit-employee" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer font-bold">
+                        <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                    </svg>                          
+                </div>
+            </div>
+        </div>
+        <div id="employee-deleted" class="body">
+            
+        </div>
+        <div class="footer">
+            <div id="footer-deleted" class="flex justify-end items-center">
                 
             </div>
         </div>

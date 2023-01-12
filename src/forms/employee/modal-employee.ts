@@ -1,4 +1,4 @@
-import { Employee } from "../interfaces/employee";
+import { Employee } from "../../interfaces/employee";
 import { makeTableEmployee } from "./table-employee";
 
 

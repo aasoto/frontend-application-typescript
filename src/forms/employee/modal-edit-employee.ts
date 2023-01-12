@@ -1,5 +1,5 @@
-import { Employee } from "../classes/Employee";
-import { Employee as EmployeeInterface } from "../interfaces/employee";
+import { Employee } from "../../classes/Employee";
+import { Employee as EmployeeInterface } from "../../interfaces/employee";
 import { formEmployee } from "./form-employee";
 
 export const showModalEditEmployee = (data: EmployeeInterface) => {
@@ -49,4 +49,5 @@ export const showModalEditEmployee = (data: EmployeeInterface) => {
   });
 
   footerEdit?.appendChild(btnUpdate);
+
 }

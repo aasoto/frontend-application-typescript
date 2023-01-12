@@ -1,14 +1,15 @@
-import { Employees } from "../interfaces/employees";
-import { genders, tHeaders } from "../prelim-data/data";
-import { eye, pencilSquare, trash } from "../prelim-data/icons";
-import { deleteEmployee } from "../requests/delete";
-import { getEmployee, getEmployees } from '../requests/get';
-import { deleteSuccess } from "./alerts";
+import { Employees } from "../../interfaces/employees";
+import { genders, tHeaders } from "../../prelim-data/data";
+import { eye, pencilSquare, trash } from "../../prelim-data/icons";
+import { deleteSuccess } from "../alerts";
 import { showModalEditEmployee } from "./modal-edit-employee";
 import { showModalEmployee } from "./modal-employee";
+import { EmployeeRequest } from '../../requests/EmployeeRequest';
+
+const request = new EmployeeRequest();
 
 export const makeTableEmployees = (url: string = 'http://127.0.0.1:8000/api/employee') => {
-  getEmployees(url)
+  request.getEmployees(url)
   .then(resp => {
     showEmployees(resp);
   }).catch(error => {
@@ -118,6 +119,10 @@ const getGender = (gender: string): string => {
 
 const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement => {
   action.classList.add('td-actions');
+
+  /**
+   * BOTÓN VER MÁS
+   */
   const btnWatch = document.createElement('button');
   btnWatch.classList.add('btn-primary');
   btnWatch.innerHTML = eye;
@@ -128,7 +133,7 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
     modalInfoEmployee?.classList.toggle('hidden');
     cardEmployeeInfo?.classList.toggle('hidden');
 
-    getEmployee(id)
+    request.getEmployee(id)
       .then( resp => {
         showModalEmployee(resp);
       }).catch( error => {
@@ -138,6 +143,9 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
       });
   });
 
+  /**
+   * BOTÓN EDITAR
+   */
   const btnEdit = document.createElement('button');
   btnEdit.classList.add('btn-warning');
   btnEdit.innerHTML = pencilSquare;
@@ -155,7 +163,7 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
     modalEditEmployee?.classList.toggle('hidden');
     cardEmployeeEdit?.classList.toggle('hidden');
 
-    getEmployee(id)
+    request.getEmployee(id)
       .then( resp => {
         showModalEditEmployee(resp);
       }).catch( error => {
@@ -165,12 +173,15 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
       });
   });
 
+  /**
+   * BOTÓN ELIMINAR
+   */
   const btnDelete = document.createElement('button');
   btnDelete.classList.add('btn-danger');
   btnDelete.innerHTML = trash;
 
   btnDelete.addEventListener('click', event => {
-    deleteEmployee(id)
+    request.deleteEmployee(id)
     .then( resp => {
       console.log(resp);
       if (resp.status == 'delete') {

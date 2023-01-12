@@ -1,5 +1,5 @@
-import { Employee } from "../interfaces/employee";
-import { fields } from "../prelim-data/data";
+import { Employee } from "../../interfaces/employee";
+import { fields } from "../../prelim-data/data";
 
 type Genders = {
   value: string;

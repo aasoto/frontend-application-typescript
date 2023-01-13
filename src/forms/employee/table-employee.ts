@@ -1,4 +1,5 @@
 import { Employee } from "../../interfaces/employee";
+import { genders } from "../../prelim-data/data";
 
 export const makeTableEmployee = (data: Employee): HTMLTableElement => {
   const {
@@ -26,9 +27,15 @@ export const makeTableEmployee = (data: Employee): HTMLTableElement => {
   cellPhoto.colSpan = 2;
   cellPhoto.rowSpan = 4;
   cellPhoto.id = 'employee-photo';
+
+  const photoSpace = document.createElement('div');
+  photoSpace.classList.add('line-center-items');
+  cellPhoto.appendChild(photoSpace);
+
   const photo: HTMLImageElement = document.createElement('img');
-  photo.src = '';
-  cellPhoto.appendChild(photo);
+  photo.src = `http://127.0.0.1:8000/profile-photos/${profile_photo}`;
+  photo.classList.add('profile-photo');
+  photoSpace.appendChild(photo);
 
   const cellTFirstName: HTMLTableCellElement = td();
   cellTFirstName.classList.add('cell-head');
@@ -115,7 +122,11 @@ export const makeTableEmployee = (data: Employee): HTMLTableElement => {
   const cellGender: HTMLTableCellElement = td();
   cellGender.classList.add('cell');
   cellGender.id = 'employee-gender';
-  cellGender.textContent = gender;
+  genders.forEach(element => {
+    if (element.value == gender) {
+      cellGender.textContent = element.text;
+    }
+  });
   
   const cellBirthdate: HTMLTableCellElement = td();
   cellBirthdate.classList.add('cell');
@@ -125,7 +136,7 @@ export const makeTableEmployee = (data: Employee): HTMLTableElement => {
   const cellAge: HTMLTableCellElement = td();
   cellAge.classList.add('cell');
   cellAge.id = 'employee-age';
-  cellAge.textContent = 'nn';
+  cellAge.textContent = calcularEdad(birthdate).toString();
 
   row6.append(cellCC, cellGender, cellBirthdate, cellAge);
   
@@ -138,4 +149,30 @@ const tr = (): HTMLTableRowElement => {
 
 const td = (): HTMLTableCellElement => {
   return document.createElement('td');
+}
+
+const calcularEdad = (fechaNacimiento: Date): number => {
+  const today: Date = new Date();
+
+  const current_year: number = today.getFullYear();
+  const current_month: number = today.getMonth() + 1;
+  const current_day: number = today.getDate();
+
+  console.log(current_year, current_month, current_day);
+
+  const birth_year: number = parseInt(String(fechaNacimiento).substring(0, 4));
+  const birth_month: number = parseInt(String(fechaNacimiento).substring(5, 7));
+  const birth_day: number = parseInt(String(fechaNacimiento).substring(8, 10));
+
+  console.log(birth_year, birth_month, birth_day);
+
+  let age: number = current_year - birth_year;
+  if (current_month < birth_month) {
+    age --;
+  } else if (current_month === birth_month) {
+    if (current_day < birth_day) {
+      age --;
+    }
+  }
+  return age;
 }

@@ -109,12 +109,11 @@ export const editSuccess = (): void => {
 export const deleteSuccess = (): void => {
   
   makeTableEmployees();
-  
+
   const modalDeletedEmployee: Element | null = document.querySelector('#modal-deleted-employee');
   const cardEmployeeDeleted: Element | null = document.querySelector('#card-employee-deleted');
 
-  modalDeletedEmployee?.classList.toggle('hidden');
-  cardEmployeeDeleted?.classList.toggle('hidden');
+  
   
   const employeeDeleted = document.getElementById('employee-deleted');
   while (employeeDeleted?.firstChild) {

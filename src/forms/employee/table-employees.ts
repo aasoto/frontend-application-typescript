@@ -5,6 +5,7 @@ import { deleteSuccess } from "../alerts";
 import { showModalEditEmployee } from "./modal-edit-employee";
 import { showModalEmployee } from "./modal-employee";
 import { EmployeeRequest } from '../../requests/EmployeeRequest';
+import { showModalDelete } from './modal-delete-employee';
 
 const request = new EmployeeRequest();
 
@@ -66,7 +67,8 @@ const showEmployees = (data: Employees):void => {
     const colCC = document.createElement('td');
     colCC.textContent = cc;
     const colName = document.createElement('td');
-    colName.textContent = `${first_name} ${second_name} ${last_name} ${second_last_name}`;
+    // colName.textContent = `${first_name} ${second_name} ${last_name} ${second_last_name}`;
+    colName.textContent = first_name + ' ' + (second_name || '') + ' ' + last_name + ' ' + (second_last_name || '');
     const colGender = document.createElement('td');
     colGender.textContent = getGender(gender);
     const colBirthdate = document.createElement('td');
@@ -181,18 +183,7 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   btnDelete.innerHTML = trash;
 
   btnDelete.addEventListener('click', event => {
-    request.deleteEmployee(id)
-    .then( resp => {
-      console.log(resp);
-      if (resp.status == 'delete') {
-        deleteSuccess();
-        makeTableEmployees();
-      }
-    }).catch( error => {
-      console.error(error);
-    }).finally( () => {
-      console.log('Eliminación empleado finalizada...');
-    });
+    showModalDelete(id);
   });
 
   action.append(btnWatch, btnEdit, btnDelete);

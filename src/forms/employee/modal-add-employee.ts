@@ -28,30 +28,37 @@ export const showModalAddEmployee = (): void => {
     btnSave.textContent = 'Guardar';
   
     btnSave.addEventListener('click', event => {
-    
-      const cc: HTMLInputElement = (<HTMLInputElement>document.getElementById('cc'));
-      const firstName: HTMLInputElement = (<HTMLInputElement>document.getElementById('first_name'));
-      const secondName: HTMLInputElement = (<HTMLInputElement>document.getElementById('second_name'));
-      const lastName: HTMLInputElement = (<HTMLInputElement>document.getElementById('last_name'));
-      const secondLastName: HTMLInputElement = (<HTMLInputElement>document.getElementById('second_last_name'));
-      const gender: HTMLSelectElement = (<HTMLSelectElement>document.getElementById('gender'));
-      const birthdate: HTMLInputElement = (<HTMLInputElement>document.getElementById('birthdate'));
-      const profilePhoto: HTMLInputElement = (<HTMLInputElement>document.getElementById('profile_photo'));
-      const fileProfilePhoto = profilePhoto.files;
+      const sent: HTMLInputElement = (<HTMLInputElement>document.getElementById('sent'));
+      if (sent?.value == 'false') {
+        sent.value = 'true';
+
+        btnSave.classList.remove('btn-footer-success');
+        btnSave.classList.add('btn-footer-success-disable');
+  
+        const cc: HTMLInputElement = (<HTMLInputElement>document.getElementById('cc'));
+        const firstName: HTMLInputElement = (<HTMLInputElement>document.getElementById('first_name'));
+        const secondName: HTMLInputElement = (<HTMLInputElement>document.getElementById('second_name'));
+        const lastName: HTMLInputElement = (<HTMLInputElement>document.getElementById('last_name'));
+        const secondLastName: HTMLInputElement = (<HTMLInputElement>document.getElementById('second_last_name'));
+        const gender: HTMLSelectElement = (<HTMLSelectElement>document.getElementById('gender'));
+        const birthdate: HTMLInputElement = (<HTMLInputElement>document.getElementById('birthdate'));
+        const profilePhoto: HTMLInputElement = (<HTMLInputElement>document.getElementById('profile_photo'));
+        const fileProfilePhoto = profilePhoto.files;
+        
+        console.log(fileProfilePhoto?.[0]);
+        const employee = new Employee(
+          cc.value,
+          firstName.value,
+          secondName.value,
+          lastName.value,
+          secondLastName.value,
+          gender.value,
+          birthdate.value,
+          fileProfilePhoto?.[0]
+        );
       
-      console.log(fileProfilePhoto?.[0]);
-      const employee = new Employee(
-        cc.value,
-        firstName.value,
-        secondName.value,
-        lastName.value,
-        secondLastName.value,
-        gender.value,
-        birthdate.value,
-        fileProfilePhoto?.[0]
-      );
-    
-      employee.saveEmployee();
+        employee.saveEmployee();
+      }
     });
     
     footerAdd?.appendChild(btnSave);

@@ -28,6 +28,13 @@ const genders: Genders = [
 export const formEmployee = (data: Employee | null): HTMLDivElement => {
   const grid: HTMLDivElement = document.createElement('div');
   grid.classList.add('grid-form');
+  
+  /**Campo de enviado */
+  const sent: HTMLInputElement = document.createElement('input');
+  sent.id = 'sent';
+  sent.type = 'hidden';
+  sent.value = 'false';
+  grid.appendChild(sent);
 
   if (data) {
     const {cc, first_name, second_name, last_name, second_last_name, gender, birthdate, profile_photo} = data;
@@ -40,7 +47,7 @@ export const formEmployee = (data: Employee | null): HTMLDivElement => {
     dataFiltered[5] = gender? gender : '';
     dataFiltered[6] = birthdate? birthdate.toString() : '';
     dataFiltered[7] = profile_photo;
-    
+
     let index = 0; 
     fields.forEach(element => {
       const {cols, id, placeholder, type} = element;

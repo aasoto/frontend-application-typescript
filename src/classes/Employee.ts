@@ -1,7 +1,8 @@
-import { saveNewEmployee, updateProfilePhotoEmployee } from "../requests/post";
-import { putHTTPFunction, updateEmployee } from "../requests/put";
+import { EmployeeRequest } from "../requests/EmployeeRequest";
 
 export class Employee {
+
+  protected request = new EmployeeRequest();
 
   constructor(
     protected cc: string,
@@ -15,12 +16,10 @@ export class Employee {
   ) {}
 
   saveEmployee (): void {
-    console.log(this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
-    saveNewEmployee(this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
+    this.request.saveEmployee(this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
   }
 
   editEmployee (id: number): void {
-    console.log(this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
-    updateProfilePhotoEmployee(id, this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
+    this.request.updateProfilePhotoEmployee(id, this.cc, this.firstName, this.secondName, this.lastName, this.secondLastName, this.gender, this.birthdate, this.profilePhoto);
   }
 }

@@ -186,6 +186,7 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
       console.log(resp);
       if (resp.status == 'delete') {
         deleteSuccess();
+        makeTableEmployees();
       }
     }).catch( error => {
       console.error(error);

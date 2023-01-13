@@ -1,5 +1,9 @@
+import { makeTableEmployees } from "./employee/table-employees";
 
 export const sendSuccess = (): void => {
+  
+  makeTableEmployees();
+  
   const employeeAdd = document.getElementById('employee-add');
   while (employeeAdd?.firstChild) {
     employeeAdd.removeChild(employeeAdd.firstChild);
@@ -50,6 +54,9 @@ export const sendSuccess = (): void => {
 
 
 export const editSuccess = (): void => {
+  
+  makeTableEmployees();
+
   const employeeEdit = document.getElementById('employee-edit');
   while (employeeEdit?.firstChild) {
     employeeEdit.removeChild(employeeEdit.firstChild);
@@ -100,6 +107,9 @@ export const editSuccess = (): void => {
 }
 
 export const deleteSuccess = (): void => {
+  
+  makeTableEmployees();
+  
   const modalDeletedEmployee: Element | null = document.querySelector('#modal-deleted-employee');
   const cardEmployeeDeleted: Element | null = document.querySelector('#card-employee-deleted');
 

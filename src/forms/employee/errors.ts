@@ -16,9 +16,10 @@ export const showErrors = (data: Errors) => {
   fields.forEach(element => {
     const { id } = element;
     keys.forEach(element => {
+      const errorField: HTMLLabelElement = (<HTMLLabelElement>document.getElementById(`${id}-error`));
+      const errorInput: HTMLLabelElement = (<HTMLLabelElement>document.getElementById(id));
       if (id == element) {
-        const errorField: HTMLLabelElement = (<HTMLLabelElement>document.getElementById(`${id}-error`));
-        const errorInput: HTMLLabelElement = (<HTMLLabelElement>document.getElementById(id));
+        ableSendButton();
         switch (id) {
           case 'cc':
             errorInput.classList.replace('input-normal', 'input-error');
@@ -72,4 +73,13 @@ export const showErrors = (data: Errors) => {
       }
     });
   });
+}
+
+const ableSendButton = (): void => {
+  const btnSave: HTMLButtonElement = (<HTMLButtonElement>document.getElementById('send-new-employee'));
+  const btnUpdate: HTMLButtonElement = (<HTMLButtonElement>document.getElementById('update-employee'));
+  const sent: HTMLInputElement = (<HTMLInputElement>document.getElementById('sent'));
+  sent.value = 'false';
+  btnSave?.classList.replace('btn-footer-success-disable', 'btn-footer-success');
+  btnUpdate?.classList.replace('btn-footer-warning-disable', 'btn-footer-warning');
 }

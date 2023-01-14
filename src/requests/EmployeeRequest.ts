@@ -146,6 +146,9 @@ export class EmployeeRequest {
         console.log(resp);
       }
     }).catch( error => {
+      if (error.response.status == 422) {
+        showErrors(error.response.data);
+      }
       console.error(error);
     }).finally( () => {
       console.log('Guardado terminado')

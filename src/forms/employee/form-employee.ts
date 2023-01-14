@@ -90,12 +90,19 @@ const inputElement = (cols: number, id: string, placeholder: string, type: strin
     input.value = value;
   } else if(type == 'file'){
     input.title = placeholder;
+    const imgPhoto: HTMLImageElement = document.createElement('img');
+    showTempImage(input, imgPhoto);
+    cell.append(input, imgPhoto);
   } else {
     input.placeholder = placeholder;
     input.value = value;
   }
+
   input.type = type;
-  cell.appendChild(input);
+
+  if (type != 'file') {
+    cell.appendChild(input);
+  }
   return cell;
 }
 
@@ -121,4 +128,19 @@ const selectElement = (cols: number, id: string, placeholder: string, options: G
   });
 
   return cell;
+}
+
+const showTempImage = (input: HTMLInputElement, img: HTMLImageElement): void => {
+  input.addEventListener('change', event => {
+
+    const cardModalAdd: HTMLElement | null = document.getElementById('card-employee-add');
+    cardModalAdd?.classList.replace('fixed', 'absolute');
+    cardModalAdd?.classList.add('top-10');
+
+    const fileInput: HTMLInputElement = (<HTMLInputElement>document.getElementById('profile_photo'));
+    const file: File | undefined = fileInput?.files?.[0];
+    img.classList.add('temp-photo');
+    img.classList.add('mx-auto');
+    img.src = URL.createObjectURL(<Blob>(file));
+  })
 }

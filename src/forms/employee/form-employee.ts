@@ -91,7 +91,7 @@ const inputElement = (cols: number, id: string, placeholder: string, type: strin
   } else if(type == 'file'){
     input.title = placeholder;
     const imgPhoto: HTMLImageElement = document.createElement('img');
-    showTempImage(input, imgPhoto);
+    showTempImage(input, imgPhoto, value);
     cell.append(input, imgPhoto);
   } else {
     input.placeholder = placeholder;
@@ -130,9 +130,21 @@ const selectElement = (cols: number, id: string, placeholder: string, options: G
   return cell;
 }
 
-const showTempImage = (input: HTMLInputElement, img: HTMLImageElement): void => {
-  input.addEventListener('change', event => {
+const showTempImage = (input: HTMLInputElement, img: HTMLImageElement, fileURL: string | null = null): void => {
+  /** Configurar modal de editar para que pueda tener una imagen */
+  const cardModalEdit: HTMLElement | null = document.getElementById('card-employee-edit');
+  cardModalEdit?.classList.replace('fixed', 'absolute');
+  cardModalEdit?.classList.add('top-10');
+  
+  if (fileURL) {
+    img.classList.add('temp-photo');
+    img.classList.add('mx-auto');
+    
+    img.src = `http://127.0.0.1:8000/profile-photos/${fileURL}`;
+  }
 
+  input.addEventListener('change', event => {
+    /** Configurar modal de agregar para que pueda tener una imagen */
     const cardModalAdd: HTMLElement | null = document.getElementById('card-employee-add');
     cardModalAdd?.classList.replace('fixed', 'absolute');
     cardModalAdd?.classList.add('top-10');
@@ -141,6 +153,7 @@ const showTempImage = (input: HTMLInputElement, img: HTMLImageElement): void => 
     const file: File | undefined = fileInput?.files?.[0];
     img.classList.add('temp-photo');
     img.classList.add('mx-auto');
+
     img.src = URL.createObjectURL(<Blob>(file));
   })
 }

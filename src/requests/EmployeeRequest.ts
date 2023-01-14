@@ -1,5 +1,6 @@
 import axios from "axios";
 import { editSuccess, sendSuccess } from "../forms/alerts";
+import { showErrors } from "../forms/employee/errors";
 import { makeTableEmployees } from "../forms/employee/table-employees";
 import { Employee } from "../interfaces/employee";
 import { Employees } from "../interfaces/employees";
@@ -57,6 +58,9 @@ export class EmployeeRequest {
         console.log(resp);
       }
     }).catch( error => {
+      if (error.response.status == 422) {
+        showErrors(error.response.data);
+      }
       console.error(error);
     }).finally( () => {
       console.log('Guardado terminado')

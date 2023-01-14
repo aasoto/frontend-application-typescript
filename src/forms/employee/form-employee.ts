@@ -81,6 +81,11 @@ const inputElement = (cols: number, id: string, placeholder: string, type: strin
   const cell: HTMLDivElement = document.createElement('div');
   cell.classList.add(`col-span-${cols}`);
 
+  const labelError = document.createElement('label');
+  labelError.classList.add('text-error');
+  labelError.setAttribute('for', id);
+  labelError.id = `${id}-error`;
+
   const input: HTMLInputElement = document.createElement('input');
   input.classList.add('input-normal');
   input.id = id;
@@ -92,7 +97,7 @@ const inputElement = (cols: number, id: string, placeholder: string, type: strin
     input.title = placeholder;
     const imgPhoto: HTMLImageElement = document.createElement('img');
     showTempImage(input, imgPhoto, value);
-    cell.append(input, imgPhoto);
+    cell.append(labelError, input, imgPhoto);
   } else {
     input.placeholder = placeholder;
     input.value = value;
@@ -101,7 +106,7 @@ const inputElement = (cols: number, id: string, placeholder: string, type: strin
   input.type = type;
 
   if (type != 'file') {
-    cell.appendChild(input);
+    cell.append(labelError, input);
   }
   return cell;
 }
@@ -110,12 +115,17 @@ const selectElement = (cols: number, id: string, placeholder: string, options: G
   const cell: HTMLDivElement = document.createElement('div');
   cell.classList.add(`col-span-${cols}`);
 
+  const labelError = document.createElement('label');
+  labelError.classList.add('text-error');
+  labelError.setAttribute('for', id);
+  labelError.id = `${id}-error`;
+
   const select: HTMLSelectElement = document.createElement('select');
   select.classList.add('input-normal');
   select.id = id;
   select.name = id;
   select.title = placeholder,
-  cell.appendChild(select);
+  cell.append(labelError, select);
 
   options.forEach(element => {
     const option = document.createElement('option');

@@ -1,37 +1,23 @@
-import { makeTableEmployees } from './forms/employee/table-employees';
-import { showModalAddEmployee } from './forms/employee/modal-add-employee';
+import { startModuleEmployee } from "./employee";
 
-/** CARGAR TABLA GENERAL DE EMPLEADOS */
-makeTableEmployees();
+const showSideBar = document.getElementById('show-sidebar');
+const sidebar = document.getElementById('menu-sidebar');
 
-const closeShowEmployee: Element | null = document.querySelector('#close-show-employee');
-const modalInfoEmployee: Element | null = document.querySelector('#modal-info-employee');
-const cardEmployeeInfo: Element | null = document.querySelector('#card-employee-info');
-const closeEditEmployee = document.querySelector('#close-edit-employee');
-const modalEditEmployee = document.querySelector('#modal-edit-employee');
-const cardEmployeeEdit = document.querySelector('#card-employee-edit');
+showSideBar?.addEventListener('mouseenter', event => {
+  event.preventDefault();
+  console.log('show sidebar...');
 
-/** MOSTRAR MODAL PARA AGREGAR NUEVO EMPLEADO */
-showModalAddEmployee();
-
-
-modalInfoEmployee?.addEventListener('click', event => {
-  modalInfoEmployee?.classList.toggle('hidden');
-  cardEmployeeInfo?.classList.toggle('hidden');
+  sidebar?.classList.replace('-translate-x-[100%]', 'translate-x-0');
 });
 
-closeShowEmployee?.addEventListener('click', event => {
-  modalInfoEmployee?.classList.toggle('hidden');
-  cardEmployeeInfo?.classList.toggle('hidden');
+sidebar?.addEventListener('mouseleave', event => {
+  sidebar?.classList.replace('translate-x-0', '-translate-x-[100%]');
 });
 
-closeEditEmployee?.addEventListener('click', event => {
-  modalEditEmployee?.classList.toggle('hidden');
-  cardEmployeeEdit?.classList.toggle('hidden');
-});
+const showEmployeePage = document.getElementById('show-employee-page');
+showEmployeePage?.addEventListener('click', event => {
+  const employeePage = document.getElementById('employee-page');
+  employeePage?.classList.replace('hidden', 'block');
 
-modalEditEmployee?.addEventListener('click', event => {
-  modalEditEmployee?.classList.toggle('hidden');
-  cardEmployeeEdit?.classList.toggle('hidden');
+  startModuleEmployee();
 });
-

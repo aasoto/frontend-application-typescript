@@ -1,5 +1,5 @@
 import { Employee } from "../../interfaces/employee";
-import { fields } from "../../prelim-data/data";
+import { fieldsEmployee } from "../../prelim-data/data";
 
 type Genders = {
   value: string;
@@ -49,7 +49,7 @@ export const formEmployee = (data: Employee | null): HTMLDivElement => {
     dataFiltered[7] = profile_photo;
 
     let index = 0; 
-    fields.forEach(element => {
+    fieldsEmployee.forEach(element => {
       const {cols, id, placeholder, type} = element;
       if (type == 'select') {
         const field = selectElement(cols, id, placeholder, genders, dataFiltered[index]);
@@ -61,7 +61,7 @@ export const formEmployee = (data: Employee | null): HTMLDivElement => {
       index ++;
     });
   } else {
-    fields.forEach(element => {
+    fieldsEmployee.forEach(element => {
       const {cols, id, placeholder, type} = element;
       if (type == 'select') {
         const field = selectElement(cols, id, placeholder, genders);

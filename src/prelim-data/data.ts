@@ -22,7 +22,7 @@ export const genders: Genders = [
   }
 ]
 
-export type FormEmployee = {
+export type FormFields = {
   cols: number;
   id: string;
   placeholder: string;
@@ -30,7 +30,7 @@ export type FormEmployee = {
   value: string | null;
 }[]
 
-export const fields: FormEmployee = [{
+export const fieldsEmployee: FormFields = [{
   cols: 2,
   id: 'cc',
   placeholder: 'Num. identificación',
@@ -78,4 +78,54 @@ export const fields: FormEmployee = [{
   placeholder: 'Foto de perfil',
   type: 'file',
   value: ''
-}]
+}];
+
+export const fieldsContractor: FormFields = [{
+  cols: 1,
+  id: 'nit',
+  placeholder: 'NIT',
+  type: 'text',
+  value: ''
+},{
+  cols: 1,
+  id: 'business_name',
+  placeholder: 'address',
+  type: 'text',
+  value: ''
+},{
+  cols: 1,
+  id: 'address',
+  placeholder: 'Dirección',
+  type: 'text',
+  value: ''
+},{
+  cols: 1,
+  id: 'country_id',
+  placeholder: 'País',
+  type: 'select',
+  value: ''
+},{
+  cols: 1,
+  id: 'responsable',
+  placeholder: 'Responsable',
+  type: 'text',
+  value: ''
+},{
+  cols: 1,
+  id: 'email',
+  placeholder: 'Correo electronico',
+  type: 'email',
+  value: ''
+},{
+  cols: 1,
+  id: 'phone',
+  placeholder: 'Telefono',
+  type: 'text',
+  value: ''
+},{
+  cols: 1,
+  id: 'tags',
+  placeholder: 'Etiquetas',
+  type: 'text',
+  value: ''
+}];

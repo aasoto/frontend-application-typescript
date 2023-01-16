@@ -1,4 +1,4 @@
-import { fields } from "../../prelim-data/data";
+import { fieldsEmployee } from "../../prelim-data/data";
 
 type Errors = {
   cc?: string[];
@@ -13,7 +13,7 @@ type Errors = {
 
 export const showErrors = (data: Errors) => {
   const keys = Object.keys(data);
-  fields.forEach(element => {
+  fieldsEmployee.forEach(element => {
     const { id } = element;
     keys.forEach(element => {
       const errorField: HTMLLabelElement = (<HTMLLabelElement>document.getElementById(`${id}-error`));

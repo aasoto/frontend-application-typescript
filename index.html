@@ -179,7 +179,7 @@
                         </span>                            
                     </span>
                 </li>
-                <li class="group rounded-lg bg-transparent hover:bg-blue-600 text-gray-900 hover:text-white px-5 py-3 transition duration-200">
+                <li id="show-contractor-page" class="group rounded-lg bg-transparent hover:bg-blue-600 text-gray-900 hover:text-white px-5 py-3 transition duration-200">
                     <span class="font-semibold hover:font-bold flex items-center gap-5 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="rounded-md group-hover:bg-white group-hover:text-blue-600 p-2 w-10 h-10">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
@@ -189,7 +189,7 @@
                         </span>                            
                     </span>
                 </li>
-                <li class="group rounded-lg bg-transparent hover:bg-blue-600 text-gray-900 hover:text-white px-5 py-3 transition duration-200">
+                <li  id="show-project-page" class="group rounded-lg bg-transparent hover:bg-blue-600 text-gray-900 hover:text-white px-5 py-3 transition duration-200">
                     <span class="font-semibold hover:font-bold flex items-center gap-5 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="rounded-md group-hover:bg-white group-hover:text-blue-600 p-2 w-10 h-10">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
@@ -318,6 +318,74 @@
             <div class="footer">
                 <div id="footer-deleted" class="flex justify-end items-center gap-5">
                     
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hidden pt-20" id="contractor-page">
+        <div class="z-0 flex justify-center items-center">
+            <div class="w-2/3">
+                <div class="card mt-6">
+                    <div class="header-primary">Listado de empresas contratistas</div>
+                    <div class="body">
+                        <button id="add-contractor" class="btn-success mb-3">
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Agregar empresa contratista
+                            </div>
+                        </button>
+                        <div id="contractors-list">
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-add-contractor" class="absolute hidden top-0 z-20 flex justify-center items-center w-full h-full bg-black/25">
+        </div>
+        <div id="card-contractor-add" class="fixed hidden z-30 inset-x-0 top-14 mx-auto card w-2/3">
+            <div class="header-success">
+                <div class="grid grid-cols-12 gap-3">
+                    <div class="col-span-11">
+                        <h1>Agregar empresa contratista</h1>
+                    </div>
+                    <div class="col-span-1">
+                        <svg id="close-add-contractor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer font-bold">
+                            <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                        </svg>                          
+                    </div>
+                </div>
+            </div>
+            <div id="contractor-add" class="body">
+                
+            </div>
+            <div class="footer">
+                <div id="footer-contractor-add" class="flex justify-end items-center">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hidden pt-20" id="project-page">
+        <div class="z-0 flex justify-center items-center">
+            <div class="w-2/3">
+                <div class="card mt-6">
+                    <div class="header-primary">Listado de proyectos</div>
+                    <div class="body">
+                        <button id="add-project" class="btn-success mb-3">
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Agregar proyectos
+                            </div>
+                        </button>
+                        <div id="projects-list">
+    
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

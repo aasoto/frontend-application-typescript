@@ -89,7 +89,7 @@ export const fieldsContractor: FormFields = [{
 },{
   cols: 1,
   id: 'business_name',
-  placeholder: 'address',
+  placeholder: 'Razón social',
   type: 'text',
   value: ''
 },{

@@ -9,6 +9,7 @@ type Countries = {
 }[];
 
 let countries: Countries;
+export let tagsArray: string[] = [];
 
 const contractor = new ContractorRequest();
 
@@ -141,13 +142,27 @@ const saveTags = (input: HTMLInputElement, cell: HTMLDivElement): HTMLDivElement
   input.addEventListener('keypress', event => {
     const tagsInput: HTMLInputElement = (<HTMLInputElement>document.getElementById('tags'));
     if (event.code == 'Enter') {
+
       const tagsCell = document.createElement('div');
       tagsCell.classList.add('col-span-1');
+
       const tag = document.createElement('div');
       tag.classList.add('tag-block');
+      tag.id = `${tagsInput.value}-tag`;
       tag.textContent = tagsInput?.value;
+      tag.title = 'Eliminar etiqueta';
+      tag.addEventListener('click', event => {
+        const target: HTMLDivElement = (<HTMLDivElement>event.target);
+
+        const tagBlockSelected = document.getElementById(target.id);
+        tagBlockSelected?.parentElement?.classList.add('hidden');
+
+        const index = tagsArray.indexOf(<string>target.textContent);
+        tagsArray.splice(index, 1);
+      });
       tagsCell.appendChild(tag);
       spaceTags.appendChild(tagsCell);
+      tagsArray.push(tagsInput?.value);
       tagsInput.value = '';
     }
   });

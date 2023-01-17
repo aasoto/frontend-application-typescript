@@ -1,4 +1,5 @@
-import { formContractor } from "./form-contractor";
+import { ContractorCompany } from "../../classes/ContractorCompany";
+import { formContractor, tagsArray } from "./form-contractor";
 
 export const showModalAddContractor = (): void => {
   const addContractor: HTMLButtonElement = (<HTMLButtonElement>document.getElementById('add-contractor'));
@@ -30,7 +31,20 @@ export const showModalAddContractor = (): void => {
       const responsable: HTMLInputElement = (<HTMLInputElement>document.getElementById('responsable'));
       const email: HTMLInputElement = (<HTMLInputElement>document.getElementById('email'));
       const phone: HTMLInputElement = (<HTMLInputElement>document.getElementById('phone'));
+      console.log('Etiquetas: ', tagsArray);
 
+      const contractorCompany = new ContractorCompany(
+        nit.value, 
+        businessName.value, 
+        address.value, 
+        parseInt(countryID.value), 
+        responsable.value, 
+        email.value, 
+        phone.value, 
+        JSON.stringify(tagsArray)
+      );
+
+      contractorCompany.show();
     });
 
     footerContractorAdd?.appendChild(btnSave);

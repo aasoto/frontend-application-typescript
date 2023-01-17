@@ -1,5 +1,6 @@
 import axios from "axios";
 import { sendSuccess } from "../forms/contractor_company/alertsContractor";
+import { showErrors } from "../forms/contractor_company/errors-contractor";
 import { Contractor } from "../interfaces/contractor";
 // import { Countries } from "../interfaces/country";
 
@@ -53,7 +54,7 @@ export class ContractorRequest {
       }
     }).catch( error => {
       if (error.response.status == 422) {
-        // showErrors(error.response.data);
+        showErrors(error.response.data);
       }
       console.error(error);
     }).finally( () => {

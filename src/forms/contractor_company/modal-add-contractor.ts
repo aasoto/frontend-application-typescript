@@ -25,26 +25,34 @@ export const showModalAddContractor = (): void => {
     btnSave.textContent = 'Guardar';
 
     btnSave.addEventListener('click', event => {
-      const nit: HTMLInputElement = (<HTMLInputElement>document.getElementById('nit'));
-      const businessName: HTMLInputElement = (<HTMLInputElement>document.getElementById('business_name'));
-      const address: HTMLInputElement = (<HTMLInputElement>document.getElementById('address'));
-      const countryID: HTMLSelectElement = (<HTMLSelectElement>document.getElementById('country_id'));
-      const responsable: HTMLInputElement = (<HTMLInputElement>document.getElementById('responsable'));
-      const email: HTMLInputElement = (<HTMLInputElement>document.getElementById('email'));
-      const phone: HTMLInputElement = (<HTMLInputElement>document.getElementById('phone'));
-      
-      const contractorCompany = new ContractorCompany(
-        nit.value, 
-        businessName.value, 
-        address.value, 
-        parseInt(countryID.value), 
-        responsable.value, 
-        email.value, 
-        phone.value, 
-        JSON.stringify(tagsArray)
-      );
+      const sent: HTMLInputElement = (<HTMLInputElement>document.getElementById('sent'));
 
-      contractorCompany.save();
+      if (sent?.value == 'false') {
+        sent.value = 'true';
+
+        btnSave.classList.remove('btn-footer-success');
+        btnSave.classList.add('btn-footer-success-disable');
+        const nit: HTMLInputElement = (<HTMLInputElement>document.getElementById('nit'));
+        const businessName: HTMLInputElement = (<HTMLInputElement>document.getElementById('business_name'));
+        const address: HTMLInputElement = (<HTMLInputElement>document.getElementById('address'));
+        const countryID: HTMLSelectElement = (<HTMLSelectElement>document.getElementById('country_id'));
+        const responsable: HTMLInputElement = (<HTMLInputElement>document.getElementById('responsable'));
+        const email: HTMLInputElement = (<HTMLInputElement>document.getElementById('email'));
+        const phone: HTMLInputElement = (<HTMLInputElement>document.getElementById('phone'));
+        
+        const contractorCompany = new ContractorCompany(
+          nit.value, 
+          businessName.value, 
+          address.value, 
+          parseInt(countryID.value), 
+          responsable.value, 
+          email.value, 
+          phone.value, 
+          JSON.stringify(tagsArray)
+        );
+  
+        contractorCompany.save();
+      }
     });
 
     footerContractorAdd?.appendChild(btnSave);

@@ -1,5 +1,9 @@
+import { ContractorRequest } from "../requests/ContractorRequest";
 
 export class ContractorCompany {
+
+  protected request = new ContractorRequest;
+
   constructor(
     protected nit: string,
     protected businessName: string,
@@ -11,7 +15,7 @@ export class ContractorCompany {
     protected tags: string
   ) {}
 
-  show() {
-    console.log(this.nit, this.businessName, this.address, this.countryID, this.responsable, this.email, this.phone, this.tags);
+  save() {
+    this.request.save(this.nit, this.businessName, this.address, this.countryID, this.responsable, this.email, this.phone, this.tags);
   }
 }

@@ -1,5 +1,5 @@
 import { EmployeeRequest } from '../../requests/EmployeeRequest';
-import { deleteSuccess } from '../alerts';
+import { deleteSuccess } from './alertsEmployee';
 import { makeTableEmployees } from './table-employees';
 
 export const showModalDelete = (id: number) => {

@@ -1,12 +1,13 @@
 import { ContractorCompany } from "../../classes/ContractorCompany";
 import { formContractor, tagsArray } from "./form-contractor";
 
+const modalAddContractor = document.getElementById('modal-add-contractor');
+const cardContractorAdd = document.getElementById('card-contractor-add');
+
 export const showModalAddContractor = (): void => {
   const addContractor: HTMLButtonElement = (<HTMLButtonElement>document.getElementById('add-contractor'));
 
   addContractor?.addEventListener('click', event => {
-    const modalAddContractor = document.getElementById('modal-add-contractor');
-    const cardContractorAdd = document.getElementById('card-contractor-add');
 
     modalAddContractor?.classList.toggle('hidden');
     cardContractorAdd?.classList.toggle('hidden');
@@ -31,8 +32,7 @@ export const showModalAddContractor = (): void => {
       const responsable: HTMLInputElement = (<HTMLInputElement>document.getElementById('responsable'));
       const email: HTMLInputElement = (<HTMLInputElement>document.getElementById('email'));
       const phone: HTMLInputElement = (<HTMLInputElement>document.getElementById('phone'));
-      console.log('Etiquetas: ', tagsArray);
-
+      
       const contractorCompany = new ContractorCompany(
         nit.value, 
         businessName.value, 
@@ -44,11 +44,26 @@ export const showModalAddContractor = (): void => {
         JSON.stringify(tagsArray)
       );
 
-      contractorCompany.show();
+      contractorCompany.save();
     });
 
     footerContractorAdd?.appendChild(btnSave);
     
+  });
 
+  closeAddModal();
+}
+
+const closeAddModal = ():void => {
+  const closeAddContractor: Element | null = document.querySelector('#close-add-contractor');
+
+  closeAddContractor?.addEventListener('click', event => {
+    modalAddContractor?.classList.toggle('hidden');
+    cardContractorAdd?.classList.toggle('hidden');
+  });
+  
+  modalAddContractor?.addEventListener('click', event => {
+    modalAddContractor?.classList.toggle('hidden');
+    cardContractorAdd?.classList.toggle('hidden');
   });
 }

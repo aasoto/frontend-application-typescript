@@ -1,5 +1,5 @@
 import axios from "axios";
-import { editSuccess, sendSuccess } from "../forms/alerts";
+import { editSuccess, sendSuccess } from "../forms/employee/alertsEmployee";
 import { showErrors } from "../forms/employee/errors";
 import { makeTableEmployees } from "../forms/employee/table-employees";
 import { Employee } from "../interfaces/employee";

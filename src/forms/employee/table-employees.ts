@@ -1,7 +1,7 @@
 import { Employees } from "../../interfaces/employees";
 import { genders, tHeaders } from "../../prelim-data/data";
 import { eye, pencilSquare, trash } from "../../prelim-data/icons";
-import { deleteSuccess } from "../alerts";
+import { deleteSuccess } from "./alertsEmployee";
 import { showModalEditEmployee } from "./modal-edit-employee";
 import { showModalEmployee } from "./modal-employee";
 import { EmployeeRequest } from '../../requests/EmployeeRequest';

@@ -1,4 +1,4 @@
-import { makeTableEmployees } from "./employee/table-employees";
+import { makeTableEmployees } from "./table-employees";
 
 export const sendSuccess = (): void => {
   

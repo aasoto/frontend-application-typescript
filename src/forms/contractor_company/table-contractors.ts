@@ -51,7 +51,7 @@ const showContractors = (data: ContractorCompany):void => {
       id,
       nit,
       business_name,
-      country_id,
+      country,
       tags,
       phone
     } = element;
@@ -64,7 +64,7 @@ const showContractors = (data: ContractorCompany):void => {
     const colBusinessName = document.createElement('td');
     colBusinessName.textContent = business_name;
     const colCountryID = document.createElement('td');
-    colCountryID.textContent = getCountry(country_id);
+    colCountryID.textContent = country.name;
     const colTags = document.createElement('td');
     if (tags) {
       colTags.textContent = printTags(JSON.parse(tags));
@@ -104,23 +104,6 @@ const showContractors = (data: ContractorCompany):void => {
       }
     });
   });
-}
-
-const getCountry = (id: number): string => {
-  let country: Country | undefined;
-
-  request.getCountry(id)
-  .then( resp => {
-    country = resp;
-  }).catch( error => {
-    console.error(error);
-  });
-
-  if (country?.name) {
-    return country?.name;
-  } else {
-    return '';
-  }
 }
 
 const printTags = (tags: string[]): string => {

@@ -2,6 +2,8 @@ import axios from "axios";
 import { sendSuccess } from "../forms/contractor_company/alertsContractor";
 import { showErrors } from "../forms/contractor_company/errors-contractor";
 import { Contractor } from "../interfaces/contractor";
+import { ContractorCompany } from "../interfaces/contractor-company";
+import { Country } from '../interfaces/country';
 // import { Countries } from "../interfaces/country";
 
 type Countries = {
@@ -13,6 +15,18 @@ export class ContractorRequest {
   async getCountries(): Promise<Countries> {
 
     const response = await axios.get<Countries>('http://127.0.0.1:8000/api/countries');
+    return response.data;
+  }
+
+  async getCountry(id: number): Promise<Country> {
+
+    const response = await axios.get<Country>(`http://127.0.0.1:8000/api/countries/${id}`);
+    return response.data;
+  }
+
+  async get(url: string = 'http://127.0.0.1:8000/api/contractor-company'): Promise<ContractorCompany> {
+
+    const response = await axios.get<ContractorCompany>(url);
     return response.data;
   }
 

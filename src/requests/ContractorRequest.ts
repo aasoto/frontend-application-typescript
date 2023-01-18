@@ -30,6 +30,12 @@ export class ContractorRequest {
     return response.data;
   }
 
+  async getContractor (id: number): Promise<Contractor> {
+    const { data } = await axios.get<Contractor>(`http://127.0.0.1:8000/api/contractor-company/${id}`);
+
+    return data;
+  }
+
   async save (
     nit: string,
     businessName: string,

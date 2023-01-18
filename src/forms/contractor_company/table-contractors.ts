@@ -3,6 +3,7 @@ import { Country } from "../../interfaces/country";
 import { tHeadersContractor } from "../../prelim-data/data";
 import { eye, pencilSquare, trash } from "../../prelim-data/icons";
 import { ContractorRequest } from "../../requests/ContractorRequest";
+import { showModalContractor } from "./modal-info-contractor";
 
 const request = new ContractorRequest();
 
@@ -143,19 +144,19 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   btnWatch.innerHTML = eye;
   //btnWatch.setAttribute('id-employee', `${id}`);
   btnWatch.addEventListener('click', event => {
-    // const modalInfoEmployee: Element | null = document.querySelector('#modal-info-employee');
-    // const cardEmployeeInfo: Element | null = document.querySelector('#card-employee-info');
-    // modalInfoEmployee?.classList.toggle('hidden');
-    // cardEmployeeInfo?.classList.toggle('hidden');
+    const modalInfoContractor: Element | null = document.querySelector('#modal-info-contractor');
+    const cardContractorInfo: Element | null = document.querySelector('#card-contractor-info');
+    modalInfoContractor?.classList.toggle('hidden');
+    cardContractorInfo?.classList.toggle('hidden');
 
-    // request.getEmployee(id)
-    //   .then( resp => {
-    //     showModalEmployee(resp);
-    //   }).catch( error => {
-    //     console.error(error);
-    //   }).finally( () => {
-    //     console.log('Empleado consultado');
-    //   });
+    request.getContractor(id)
+      .then( resp => {
+        showModalContractor(resp);
+      }).catch( error => {
+        console.error(error);
+      }).finally( () => {
+        console.log('Empresa contratista consultada');
+      });
   });
 
   /**

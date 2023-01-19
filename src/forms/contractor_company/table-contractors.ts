@@ -2,6 +2,7 @@ import { ContractorCompany } from "../../interfaces/contractor-company";
 import { tHeadersContractor } from "../../prelim-data/data";
 import { eye, pencilSquare, trash } from "../../prelim-data/icons";
 import { ContractorRequest } from "../../requests/ContractorRequest";
+import { showModalDelete } from "./modal-delete-contractor";
 import { showModalEditContractor } from "./modal-edit-contractor";
 import { showModalContractor } from "./modal-info-contractor";
 
@@ -185,7 +186,7 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   btnDelete.innerHTML = trash;
 
   btnDelete.addEventListener('click', event => {
-    // showModalDelete(id);
+    showModalDelete(id);
   });
 
   action.append(btnWatch, btnEdit, btnDelete);

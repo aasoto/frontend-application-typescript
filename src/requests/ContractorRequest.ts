@@ -4,7 +4,7 @@ import { showErrors } from "../forms/contractor_company/errors-contractor";
 import { Contractor } from "../interfaces/contractor";
 import { ContractorCompany } from "../interfaces/contractor-company";
 import { Country } from '../interfaces/country';
-// import { Countries } from "../interfaces/country";
+import { StatusDeleted } from "../interfaces/statusEmployee";
 
 type Countries = {
   id:   number;
@@ -130,4 +130,9 @@ export class ContractorRequest {
     });
   }
 
+  async delete (id: number): Promise<StatusDeleted> {
+    const {data} = await axios.delete<StatusDeleted>(`http://127.0.0.1:8000/api/contractor-company/${id}`);
+  
+    return data;
+  }
 }

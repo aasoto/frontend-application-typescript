@@ -36,4 +36,18 @@ export const startModuleContractor = () => {
     modalEditContractor?.classList.toggle('hidden');
     cardContractorEdit?.classList.toggle('hidden');
   });
+
+  const modalDeleteContractor = document.getElementById('modal-deleted-contractor');
+  const cardContractorDelete = document.getElementById('card-contractor-deleted');
+  const closeDeleteContractor = document.getElementById('close-delete-contractor');
+
+  modalDeleteContractor?.addEventListener('click', event => {
+    modalDeleteContractor?.classList.toggle('hidden');
+    cardContractorDelete?.classList.toggle('hidden');
+  });
+
+  closeDeleteContractor?.addEventListener('click', event => {
+    modalDeleteContractor?.classList.toggle('hidden');
+    cardContractorDelete?.classList.toggle('hidden');
+  });
 }

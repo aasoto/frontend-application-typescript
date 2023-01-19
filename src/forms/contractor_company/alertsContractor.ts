@@ -105,3 +105,56 @@ export const updateSuccess = (): void => {
 
   });
 }
+
+export const deleteSuccess = (): void => {
+  
+  makeTableContractors();
+
+  const modalDeletedContractor: Element | null = document.querySelector('#modal-deleted-contractor');
+  const cardContractorDeleted: Element | null = document.querySelector('#card-contractor-deleted');
+
+  
+  
+  const contractorDeleted = document.getElementById('contractor-deleted');
+  while (contractorDeleted?.firstChild) {
+    contractorDeleted.removeChild(contractorDeleted.firstChild);
+  }
+
+  const alertSuccess = `
+  <div class="flex flex-col justify-center items-center gap-7">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-40 h-40 text-green-600">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <div class="flex flex-col justify-center items-center gap-4">
+      <h1 class="text-gray-900 font-bold text-3xl text-center">
+        La empresa contratista ha sido eliminada con exito.
+      </h1>
+    </div>
+  </div>
+  `;
+
+  if (contractorDeleted) {
+    contractorDeleted.innerHTML = alertSuccess;
+  }
+
+  const footerDeleted = document.getElementById('footer-contractor-deleted');
+  while (footerDeleted?.firstChild) {
+    footerDeleted.removeChild(footerDeleted.firstChild);
+  }
+
+  const btnClose = `
+  <button id="close-deleted-contractor-button" class="px-5 py-3 rounded-md bg-red-600 text-white font-bold">
+    Cerrar
+  </button>
+  `;
+
+  if (footerDeleted) {
+    footerDeleted.innerHTML = btnClose;
+  }
+
+  const btnCloseDeleted: Element | null = document.querySelector('#close-deleted-contractor-button');
+  btnCloseDeleted?.addEventListener('click', event => {
+    modalDeletedContractor?.classList.toggle('hidden');
+    cardContractorDeleted?.classList.toggle('hidden');
+  });
+}

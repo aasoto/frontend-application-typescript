@@ -1,14 +1,13 @@
 import { ContractorCompany } from "../../interfaces/contractor-company";
-import { Country } from "../../interfaces/country";
 import { tHeadersContractor } from "../../prelim-data/data";
 import { eye, pencilSquare, trash } from "../../prelim-data/icons";
 import { ContractorRequest } from "../../requests/ContractorRequest";
 import { showModalEditContractor } from "./modal-edit-contractor";
 import { showModalContractor } from "./modal-info-contractor";
 
-const request = new ContractorRequest();
 
-export const makeTableContractor = (url: string = 'http://127.0.0.1:8000/api/contractor-company') => {
+export const makeTableContractors = (url: string = 'http://127.0.0.1:8000/api/contractor-company') => {
+  const request = new ContractorRequest();
   request.get(url)
   .then(resp => {
     showContractors(resp);
@@ -101,7 +100,7 @@ const showContractors = (data: ContractorCompany):void => {
 
     button.addEventListener('click', event => {
       if (url) {
-        makeTableContractor(url);
+        makeTableContractors(url);
       }
     });
   });
@@ -119,6 +118,9 @@ const printTags = (tags: string[]): string => {
 
 const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement => {
   action.classList.add('td-actions');
+
+  const request = new ContractorRequest();
+
 
   /**
    * BOTÓN VER MÁS

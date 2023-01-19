@@ -1,6 +1,9 @@
+import { makeTableContractors } from "./table-contractors";
 
 export const sendSuccess = (): void => {
   
+  makeTableContractors();
+
   const contractorAdd = document.getElementById('contractor-add');
   while (contractorAdd?.firstChild) {
     contractorAdd.removeChild(contractorAdd.firstChild);
@@ -46,11 +49,14 @@ export const sendSuccess = (): void => {
     const cardContractorAdd: Element | null = document.querySelector('#card-contractor-add');
     modalAddContractor?.classList.toggle('hidden');
     cardContractorAdd?.classList.toggle('hidden');
+
   });
 }
 
 export const updateSuccess = (): void => {
   
+  makeTableContractors();
+
   const contractorEdit = document.getElementById('contractor-edit');
   while (contractorEdit?.firstChild) {
     contractorEdit.removeChild(contractorEdit.firstChild);
@@ -96,5 +102,6 @@ export const updateSuccess = (): void => {
     const cardContractorEdit: Element | null = document.querySelector('#card-contractor-edit');
     modalEditContractor?.classList.toggle('hidden');
     cardContractorEdit?.classList.toggle('hidden');
+
   });
 }

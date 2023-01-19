@@ -1,10 +1,10 @@
 import { showModalAddContractor } from './forms/contractor_company/modal-add-contractor';
-import { makeTableContractor } from './forms/contractor_company/table-contractors';
+import { makeTableContractors } from './forms/contractor_company/table-contractors';
 import { cleanTagsArray } from './forms/contractor_company/form-contractor';
 
 export const startModuleContractor = () => {
 
-  makeTableContractor();
+  makeTableContractors();
   
   showModalAddContractor();
 

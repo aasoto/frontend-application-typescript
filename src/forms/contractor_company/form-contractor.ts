@@ -11,15 +11,15 @@ type Countries = {
 let countries: Countries;
 export let tagsArray: string[] = [];
 
-const contractor = new ContractorRequest();
 
 export const formContractor = (element: string = 'contractor-add', data: Contractor | null) => {
-
+  
   getCountries(element, data);
-
+  
 }
 
 const getCountries = (element: string, data: Contractor | null) => {
+  const contractor = new ContractorRequest();
   
   contractor.getCountries()
   .then( resp => {

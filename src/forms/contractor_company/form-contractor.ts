@@ -263,3 +263,7 @@ const editTags = (input: HTMLInputElement, cell: HTMLDivElement, dataTags: strin
 
   return spaceTags;
 }
+
+export const cleanTagsArray = () => {
+  tagsArray = [];
+}

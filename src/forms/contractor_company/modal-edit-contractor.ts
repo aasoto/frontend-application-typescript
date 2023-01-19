@@ -1,6 +1,6 @@
 import { ContractorCompany } from "../../classes/ContractorCompany";
 import { Contractor } from "../../interfaces/contractor";
-import { formContractor, tagsArray } from './form-contractor';
+import { cleanTagsArray, formContractor, tagsArray } from './form-contractor';
 
 export const showModalEditContractor = (data: Contractor) => {
 
@@ -52,6 +52,8 @@ export const showModalEditContractor = (data: Contractor) => {
     }
   });
 
+  cleanTagsArray();
+  
   footerEdit?.appendChild(btnUpdate);
 
 }

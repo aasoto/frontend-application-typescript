@@ -18,4 +18,8 @@ export class ContractorCompany {
   save() {
     this.request.save(this.nit, this.businessName, this.address, this.countryID, this.responsable, this.email, this.phone, this.tags);
   }
+
+  update(id: number) {
+    this.request.update(id, this.nit, this.businessName, this.address, this.countryID, this.responsable, this.email, this.phone, this.tags);
+  }
 }

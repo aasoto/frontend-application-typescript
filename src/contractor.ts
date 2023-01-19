@@ -7,4 +7,17 @@ export const startModuleContractor = () => {
   
   showModalAddContractor();
 
+  const modalInfoContractor = document.getElementById('modal-info-contractor');
+  const cardContractorInfo = document.getElementById('card-contractor-info');
+
+  modalInfoContractor?.addEventListener('click', event => {
+    modalInfoContractor?.classList.toggle('hidden');
+    cardContractorInfo?.classList.toggle('hidden');
+  });
+
+  cardContractorInfo?.addEventListener('click', event => {
+    modalInfoContractor?.classList.toggle('hidden');
+    cardContractorInfo?.classList.toggle('hidden');
+  });
+
 }

@@ -12,7 +12,7 @@ export const showModalAddContractor = (): void => {
     modalAddContractor?.classList.toggle('hidden');
     cardContractorAdd?.classList.toggle('hidden');
     
-    formContractor(null);
+    formContractor(undefined, null);
 
     const footerContractorAdd: HTMLElement | null = document.getElementById('footer-contractor-add');
     while (footerContractorAdd?.firstChild) {

@@ -1,12 +1,10 @@
 import { Contractor } from "../../interfaces/contractor";
-import { Country } from "../../interfaces/country";
 import { ContractorRequest } from "../../requests/ContractorRequest";
 
 const employeeInfo = document.getElementById('contractor-info');
 
 export const showModalContractor = (data: Contractor): void => {
-  console.log(data);
-
+  
   while (employeeInfo?.firstChild) {
     employeeInfo.removeChild(employeeInfo.firstChild);
   }
@@ -16,7 +14,6 @@ export const showModalContractor = (data: Contractor): void => {
 }
 
 const getCountry = (data: Contractor, id: number): void => {
-  let country: Country | undefined;
   const request = new ContractorRequest();
 
   request.getCountry(id)

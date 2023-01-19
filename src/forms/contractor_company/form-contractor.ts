@@ -13,30 +13,30 @@ export let tagsArray: string[] = [];
 
 const contractor = new ContractorRequest();
 
-export const formContractor = (data: Contractor | null) => {
+export const formContractor = (element: string = 'contractor-add', data: Contractor | null) => {
 
-  getCountries();
+  getCountries(element, data);
 
 }
 
-const getCountries = () => {
+const getCountries = (element: string, data: Contractor | null) => {
   
   contractor.getCountries()
   .then( resp => {
-    setCountries(resp);
+    setCountries(resp, element, data);
   }).catch( error => {
     console.error(error);
   });
 
 }
 
-const setCountries = (data: Countries) => {
-  countries = data;
-  makeFormContractor();
+const setCountries = (country: Countries, element: string, data: Contractor | null) => {
+  countries = country;
+  makeFormContractor(element, data);
 }
 
-const makeFormContractor = () => {
-  const contractorAdd = document.getElementById('contractor-add');
+const makeFormContractor = (element: string, data: Contractor | null) => {
+  const contractorAdd = document.getElementById(element);
   while (contractorAdd?.firstChild) {
     contractorAdd.removeChild(contractorAdd.firstChild);
   }
@@ -52,16 +52,44 @@ const makeFormContractor = () => {
   sent.value = 'false';
   grid.appendChild(sent);
 
-  fieldsContractor.forEach(element => {
-    const {cols, id, placeholder, type} = element;
-      if (type == 'select') {
-        const field = selectElement(cols, id, placeholder, countries);
-        grid.appendChild(field);
-      } else {
-        const field = inputElement(cols, id, placeholder, type);
-        grid.appendChild(field);
-      }
-  });
+  if (data) {
+    const {nit, business_name, address, country_id, responsable, email, phone, tags} = data;
+    let dataFiltered: string[] = [];
+    dataFiltered[0] = nit;
+    dataFiltered[1] = business_name;
+    dataFiltered[2] = address;
+    dataFiltered[3] = country_id.toString();
+    dataFiltered[4] = responsable;
+    dataFiltered[5] = email;
+    dataFiltered[6] = phone;
+    dataFiltered[7] = tags? tags : '';
+
+    let index = 0; 
+    fieldsContractor.forEach(element => {
+      const {cols, id, placeholder, type} = element;
+        if (type == 'select') {
+          const field = selectElement(cols, id, placeholder, countries, dataFiltered[index]);
+          grid.appendChild(field);
+        } else {
+          const field = inputElement(cols, id, placeholder, type, dataFiltered[index]);
+          grid.appendChild(field);
+        }
+      index ++;
+    });
+  } else {
+    
+    fieldsContractor.forEach(element => {
+      const {cols, id, placeholder, type} = element;
+        if (type == 'select') {
+          const field = selectElement(cols, id, placeholder, countries);
+          grid.appendChild(field);
+        } else {
+          const field = inputElement(cols, id, placeholder, type);
+          grid.appendChild(field);
+        }
+    });
+
+  }
 
   contractorAdd?.appendChild(grid);
 }
@@ -80,19 +108,21 @@ const inputElement = (cols: number, id: string, placeholder: string, type: strin
   input.classList.add('input-normal');
   input.id = id;
   input.name = id;
-  input.value = value;
-  if (type == 'date') {
-    input.title = placeholder;
-  } else {
-    input.placeholder = placeholder;
+  if (id != 'tags') {
+    input.value = value;
   }
+  input.placeholder = placeholder;
 
   input.type = type;
   
   cell.append(labelError, input);
   
   if (id == 'tags') {
-    cell.appendChild(saveTags(input, cell));
+    if (value != '') {
+      cell.appendChild(editTags(input, cell, value))
+    } else {
+      cell.appendChild(saveTags(input, cell));
+    }
   }
   return cell;
 }
@@ -166,6 +196,70 @@ const saveTags = (input: HTMLInputElement, cell: HTMLDivElement): HTMLDivElement
       tagsInput.value = '';
     }
   });
+
+  return spaceTags;
+}
+
+const editTags = (input: HTMLInputElement, cell: HTMLDivElement, dataTags: string): HTMLDivElement => {
+  cell.classList.add('flex');
+  cell.classList.add('flex-col');
+
+  const spaceTags = document.createElement('div');
+  spaceTags.classList.add('grid-3');
+  spaceTags.classList.add('mt-5');
+
+  input.addEventListener('keypress', event => {
+    const tagsInput: HTMLInputElement = (<HTMLInputElement>document.getElementById('tags'));
+    if (event.code == 'Enter') {
+
+      const tagsCell = document.createElement('div');
+      tagsCell.classList.add('col-span-1');
+
+      const tag = document.createElement('div');
+      tag.classList.add('tag-block');
+      tag.id = `${tagsInput.value}-tag`;
+      tag.textContent = tagsInput?.value;
+      tag.title = 'Eliminar etiqueta';
+      tag.addEventListener('click', event => {
+        const target: HTMLDivElement = (<HTMLDivElement>event.target);
+
+        const tagBlockSelected = document.getElementById(target.id);
+        tagBlockSelected?.parentElement?.classList.add('hidden');
+
+        const index = tagsArray.indexOf(<string>target.textContent);
+        tagsArray.splice(index, 1);
+      });
+      tagsCell.appendChild(tag);
+      spaceTags.appendChild(tagsCell);
+      tagsArray.push(tagsInput?.value);
+      tagsInput.value = '';
+    }
+  });
+
+  const tagsData: string[] = JSON.parse(dataTags);
+
+  tagsData.forEach( element => {
+    const tagsCell = document.createElement('div');
+    tagsCell.classList.add('col-span-1');
+
+    const tag = document.createElement('div');
+    tag.classList.add('tag-block-edit');
+    tag.id = `${element}-tag`;
+    tag.textContent = element;
+    tag.title = 'Eliminar etiqueta';
+    tag.addEventListener('click', event => {
+      const target: HTMLDivElement = (<HTMLDivElement>event.target);
+
+      const tagBlockSelected = document.getElementById(target.id);
+      tagBlockSelected?.parentElement?.classList.add('hidden');
+
+      const index = tagsArray.indexOf(<string>target.textContent);
+      tagsArray.splice(index, 1);
+    });
+    tagsCell.appendChild(tag);
+    spaceTags.appendChild(tagsCell);
+    tagsArray.push(element);
+  })
 
   return spaceTags;
 }

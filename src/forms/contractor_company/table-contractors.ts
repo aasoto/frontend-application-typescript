@@ -3,6 +3,7 @@ import { Country } from "../../interfaces/country";
 import { tHeadersContractor } from "../../prelim-data/data";
 import { eye, pencilSquare, trash } from "../../prelim-data/icons";
 import { ContractorRequest } from "../../requests/ContractorRequest";
+import { showModalEditContractor } from "./modal-edit-contractor";
 import { showModalContractor } from "./modal-info-contractor";
 
 const request = new ContractorRequest();
@@ -150,26 +151,28 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   btnEdit.innerHTML = pencilSquare;
 
   btnEdit.addEventListener('click', event => {
-    // const employeeEdit = document.getElementById('employee-edit');
+    const contractorEdit = document.getElementById('contractor-edit');
 
-    // /** Borrar elementos del cuerpo de la card */
-    // while (employeeEdit?.firstChild) {
-    //   employeeEdit.removeChild(employeeEdit.firstChild);
-    // }
+    /** Borrar elementos del cuerpo de la card */
+    while (contractorEdit?.firstChild) {
+      contractorEdit.removeChild(contractorEdit.firstChild);
+    }
 
-    // const modalEditEmployee: Element | null = document.querySelector('#modal-edit-employee');
-    // const cardEmployeeEdit: Element | null = document.querySelector('#card-employee-edit');
-    // modalEditEmployee?.classList.toggle('hidden');
-    // cardEmployeeEdit?.classList.toggle('hidden');
+    const modalEditContractor: Element | null = document.querySelector('#modal-edit-contractor');
+    const cardContractorEdit: Element | null = document.querySelector('#card-contractor-edit');
+    modalEditContractor?.classList.toggle('hidden');
+    cardContractorEdit?.classList.toggle('hidden');
 
-    // request.getEmployee(id)
-    //   .then( resp => {
-    //     showModalEditEmployee(resp);
-    //   }).catch( error => {
-    //     console.error(error);
-    //   }).finally( () => {
-    //     console.log('Empleado consultado');
-    //   });
+    request.getContractor(id)
+      .then( resp => {
+        // console.log('data: ', resp);
+        
+        showModalEditContractor(resp);
+      }).catch( error => {
+        console.error(error);
+      }).finally( () => {
+        console.log('Empleado consultado');
+      });
   });
 
   /**

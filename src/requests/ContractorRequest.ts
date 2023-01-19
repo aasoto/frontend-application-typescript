@@ -1,5 +1,5 @@
 import axios from "axios";
-import { sendSuccess } from "../forms/contractor_company/alertsContractor";
+import { sendSuccess, updateSuccess } from "../forms/contractor_company/alertsContractor";
 import { showErrors } from "../forms/contractor_company/errors-contractor";
 import { Contractor } from "../interfaces/contractor";
 import { ContractorCompany } from "../interfaces/contractor-company";
@@ -79,6 +79,54 @@ export class ContractorRequest {
       console.error(error);
     }).finally( () => {
       console.log('Guardado terminado')
+    });
+  }
+
+  async update (
+    id: number,
+    nit: string,
+    businessName: string,
+    address: string,
+    countryID: number,
+    responsable: string,
+    email: string,
+    phone: string,
+    tags: string
+  ) {
+    
+    const data: Contractor = {
+      nit: nit,
+      business_name: businessName,
+      address: address,
+      country_id: countryID,
+      responsable: responsable,
+      email: email,
+      phone: phone,
+      tags: tags
+    }
+  
+    console.log(data);
+    await axios.put(
+      `http://127.0.0.1:8000/api/contractor-company/${id}`,
+      JSON.stringify(data),
+      {
+        headers: {
+          "content-type": "application/json, multipart/form-data"
+        }
+      }
+    ).then( resp => {
+      if (resp.status == 200) {
+        updateSuccess();
+      } else {
+        console.log(resp);
+      }
+    }).catch( error => {
+      if (error.response.status == 422) {
+        showErrors(error.response.data);
+      }
+      console.error(error);
+    }).finally( () => {
+      console.log('Guardado terminado');
     });
   }
 

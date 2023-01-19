@@ -1,4 +1,5 @@
 export interface Contractor {
+  id?: number;
   nit: string;
   business_name: string;
   address: string;

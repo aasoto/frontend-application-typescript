@@ -3,6 +3,7 @@ import { sendSuccess, updateSuccess } from "../forms/contractor_company/alertsCo
 import { showErrors } from "../forms/contractor_company/errors-contractor";
 import { Contractor } from "../interfaces/contractor";
 import { ContractorCompany } from "../interfaces/contractor-company";
+import { ContractorOptions } from '../interfaces/contractorsList';
 import { Country } from '../interfaces/country';
 import { StatusDeleted } from "../interfaces/statusEmployee";
 
@@ -27,6 +28,12 @@ export class ContractorRequest {
   async get(url: string = 'http://127.0.0.1:8000/api/contractor-company'): Promise<ContractorCompany> {
 
     const response = await axios.get<ContractorCompany>(url);
+    return response.data;
+  }
+
+  async getCleanList(): Promise<ContractorOptions> {
+
+    const response = await axios.get<ContractorOptions>('http://127.0.0.1:8000/api/contractor-company/all');
     return response.data;
   }
 

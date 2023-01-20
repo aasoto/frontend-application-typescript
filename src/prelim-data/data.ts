@@ -131,3 +131,35 @@ export const fieldsContractor: FormFields = [{
   type: 'text',
   value: ''
 }];
+
+export const fieldsProject: FormFields = [{
+  cols: 2,
+  id: 'title',
+  placeholder: 'Título',
+  type: 'text',
+  value: ''
+},{
+  cols: 2,
+  id: 'description',
+  placeholder: 'Descripción',
+  type: 'textarea',
+  value: ''
+},{
+  cols: 1,
+  id: 'start_execution',
+  placeholder: 'Inicio de ejecución',
+  type: 'date',
+  value: ''
+},{
+  cols: 1,
+  id: 'end_execution',
+  placeholder: 'Fin de ejecución',
+  type: 'date',
+  value: ''
+},{
+  cols: 2,
+  id: 'contractor_company_id',
+  placeholder: 'Empresa contratista',
+  type: 'select',
+  value: ''
+}];

@@ -1,5 +1,6 @@
 import { startModuleContractor } from "./contractor";
 import { startModuleEmployee } from "./employee";
+import { startModuleProjects } from "./project";
 
 const showSideBar = document.getElementById('show-sidebar');
 const sidebar = document.getElementById('menu-sidebar');
@@ -42,7 +43,7 @@ showProjectPage?.addEventListener('click', event => {
   projectPage?.classList.replace('hidden', 'block');
   open = 'project';
   closeModules();
-  // startModuleEmployee();
+  startModuleProjects();
 });
 
 const closeModules = () => {

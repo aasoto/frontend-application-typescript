@@ -7,5 +7,18 @@ export const startModuleProjects = () => {
 
   showModalAddProject();
 
+  const modalInfoProject = document.getElementById('modal-info-project');
+  const cardProjectInfo = document.getElementById('card-project-info');
+  const closeShowProject = document.getElementById('close-show-project');
+
+  modalInfoProject?.addEventListener('click', event => {
+    modalInfoProject.classList.toggle('hidden');
+    cardProjectInfo?.classList.toggle('hidden');
+  });
+
+  closeShowProject?.addEventListener('click', event => {
+    modalInfoProject?.classList.toggle('hidden');
+    cardProjectInfo?.classList.toggle('hidden');
+  });
   
 }

@@ -3,6 +3,8 @@ export const tHeaders = ['ID', 'Num. Identificación', 'Nombres', 'Genero', 'Fec
 
 export const tHeadersContractor = ['NIT', 'Razón social', 'País', 'Etiquetas', 'Telefono', 'Acciones'];
 
+export const tHeadersProject = ['Título', 'Inicio', 'Final', 'Emp. contratista', 'Acciones'];
+
 type Genders = {
   value: string;
   text: string;

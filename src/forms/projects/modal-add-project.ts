@@ -1,3 +1,4 @@
+import { Project } from '../../classes/Project';
 import { formProject } from './form-project';
 
 export const showModalAddProject = (): void => {
@@ -5,6 +6,17 @@ export const showModalAddProject = (): void => {
 
   const modalAddProject = document.getElementById('modal-add-project');
   const cardProjectAdd = document.getElementById('card-project-add');
+  const closeAddProject = document.getElementById('close-add-project');
+
+  modalAddProject?.addEventListener('click', event => {
+    modalAddProject.classList.toggle('hidden');
+    cardProjectAdd?.classList.toggle('hidden');
+  });
+
+  closeAddProject?.addEventListener('click', event => {
+    modalAddProject?.classList.toggle('hidden');
+    cardProjectAdd?.classList.toggle('hidden');
+  });
 
   addProject?.addEventListener('click', event => {
     formProject(undefined, null);
@@ -36,7 +48,10 @@ export const showModalAddProject = (): void => {
         const endExecution: HTMLInputElement = (<HTMLInputElement>document.getElementById('end_execution'));
         const contractorCompanyID: HTMLSelectElement = (<HTMLSelectElement>document.getElementById('contractor_company_id'));
 
-        console.log(title.value, description.value, startExecution.value, endExecution.value, contractorCompanyID.value);
+
+        const project = new Project(title.value, description.value, startExecution.value, parseInt(contractorCompanyID.value), endExecution.value);
+
+        project.save();
         
       }
     });

@@ -3,6 +3,7 @@ import { sendSuccess, updateSuccess } from "../forms/projects/alertsProjects";
 import { showErrors } from "../forms/projects/errors-project";
 import { Project } from "../interfaces/project";
 import { Projects } from "../interfaces/projects";
+import { StatusDeleted } from "../interfaces/statusEmployee";
 
 export class ProjectRequest {
 
@@ -99,4 +100,9 @@ export class ProjectRequest {
     });
   }
 
+  async delete (id: number): Promise<StatusDeleted> {
+    const {data} = await axios.delete<StatusDeleted>(`http://127.0.0.1:8000/api/projects/${id}`);
+  
+    return data;
+  }
 }

@@ -34,4 +34,18 @@ export const startModuleProjects = () => {
     modalEditProject?.classList.toggle('hidden');
     cardProjectEdit?.classList.toggle('hidden');
   });
+
+  const modalDeletedProject = document.getElementById('modal-deleted-project');
+  const cardProjectDeleted = document.getElementById('card-project-deleted');
+  const closeDeleteProject = document.getElementById('close-delete-project');
+
+  modalDeletedProject?.addEventListener('click', event => {
+    modalDeletedProject.classList.toggle('hidden');
+    cardProjectDeleted?.classList.toggle('hidden');
+  });
+
+  closeDeleteProject?.addEventListener('click', event => {
+    modalDeletedProject?.classList.toggle('hidden');
+    cardProjectDeleted?.classList.toggle('hidden');
+  });
 }

@@ -2,6 +2,7 @@ import { Projects } from "../../interfaces/projects";
 import { tHeadersProject } from "../../prelim-data/data";
 import { eye, pencilSquare, trash } from "../../prelim-data/icons";
 import { ProjectRequest } from "../../requests/ProjectRequest";
+import { showModalDelete } from "./modal-delete-project";
 import { showModalEditProject } from "./modal-edit-project";
 import { showModalProject } from "./modal-info-project";
 
@@ -169,9 +170,9 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   btnDelete.classList.add('btn-danger');
   btnDelete.innerHTML = trash;
 
-  // btnDelete.addEventListener('click', event => {
-  //   showModalDelete(id);
-  // });
+  btnDelete.addEventListener('click', event => {
+    showModalDelete(id);
+  });
 
   action.append(btnWatch, btnEdit, btnDelete);
 

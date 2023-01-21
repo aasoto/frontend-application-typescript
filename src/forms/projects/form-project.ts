@@ -46,19 +46,49 @@ const makeFormContractor = (element: string, data: Project | null) => {
   sent.value = 'false';
   grid.appendChild(sent);
 
-  fieldsProject.forEach(element => {
-    const {cols, id, placeholder, type} = element;
-    if (type == 'select') {
-      const field = selectElement(cols, id, placeholder, contractorCompanies);
-      grid.appendChild(field);
-    } else if (type == 'textarea') {
-      const field = textareaElement(cols, id, placeholder, type);
-      grid.appendChild(field);
-    } else {
-      const field = inputElement(cols, id, placeholder, type);
-      grid.appendChild(field);
-    }
-  });
+  if (data) {
+    const {title, description, start_execution, end_execution, contractor_company_id} = data;
+    let dataFiltered: string[] = [];
+    dataFiltered[0] = title;
+    dataFiltered[1] = description;
+    dataFiltered[2] = start_execution;
+    dataFiltered[3] = end_execution ?  end_execution : '';
+    dataFiltered[4] = contractor_company_id.toString();
+
+    let index = 0; 
+    fieldsProject.forEach(element => {
+      const {cols, id, placeholder, type} = element;
+        if (type == 'select') {
+          const field = selectElement(cols, id, placeholder, contractorCompanies, dataFiltered[index]);
+          grid.appendChild(field);
+        } else if (type == 'textarea') {
+          const field = textareaElement(cols, id, placeholder, type, dataFiltered[index]);
+          grid.appendChild(field);
+        } else {
+          const field = inputElement(cols, id, placeholder, type, dataFiltered[index]);
+          grid.appendChild(field);
+        }
+      index ++;
+    });
+    
+  } else {
+
+    fieldsProject.forEach(element => {
+      const {cols, id, placeholder, type} = element;
+      if (type == 'select') {
+        const field = selectElement(cols, id, placeholder, contractorCompanies);
+        grid.appendChild(field);
+      } else if (type == 'textarea') {
+        const field = textareaElement(cols, id, placeholder, type);
+        grid.appendChild(field);
+      } else {
+        const field = inputElement(cols, id, placeholder, type);
+        grid.appendChild(field);
+      }
+    });
+
+  }
+
 
   projectAdd?.appendChild(grid);
 

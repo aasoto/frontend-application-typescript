@@ -21,4 +21,17 @@ export const startModuleProjects = () => {
     cardProjectInfo?.classList.toggle('hidden');
   });
   
+  const modalEditProject = document.getElementById('modal-edit-project');
+  const cardProjectEdit = document.getElementById('card-project-edit');
+  const closeEditProject = document.getElementById('close-edit-project');
+
+  modalEditProject?.addEventListener('click', event => {
+    modalEditProject.classList.toggle('hidden');
+    cardProjectEdit?.classList.toggle('hidden');
+  });
+
+  closeEditProject?.addEventListener('click', event => {
+    modalEditProject?.classList.toggle('hidden');
+    cardProjectEdit?.classList.toggle('hidden');
+  });
 }

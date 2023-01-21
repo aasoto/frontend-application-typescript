@@ -15,4 +15,8 @@ export class Project {
   save () {
     this.request.save(this.title, this.description, this.startExecution, this.contractorCompanyID, this.endExecution);
   }
+
+  update (id: number) {
+    this.request.update(id, this.title, this.description, this.startExecution, this.contractorCompanyID, this.endExecution);
+  }
 }

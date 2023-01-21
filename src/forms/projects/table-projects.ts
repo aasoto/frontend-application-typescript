@@ -2,6 +2,7 @@ import { Projects } from "../../interfaces/projects";
 import { tHeadersProject } from "../../prelim-data/data";
 import { eye, pencilSquare, trash } from "../../prelim-data/icons";
 import { ProjectRequest } from "../../requests/ProjectRequest";
+import { showModalEditProject } from "./modal-edit-project";
 import { showModalProject } from "./modal-info-project";
 
 export const makeTableProjects = (url: string = 'http://127.0.0.1:8000/api/projects') => {
@@ -139,28 +140,26 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   btnEdit.innerHTML = pencilSquare;
 
   btnEdit.addEventListener('click', event => {
-    const contractorEdit = document.getElementById('contractor-edit');
+    const projectEdit = document.getElementById('project-edit');
 
     /** Borrar elementos del cuerpo de la card */
-    while (contractorEdit?.firstChild) {
-      contractorEdit.removeChild(contractorEdit.firstChild);
+    while (projectEdit?.firstChild) {
+      projectEdit.removeChild(projectEdit.firstChild);
     }
 
-    const modalEditContractor: Element | null = document.querySelector('#modal-edit-contractor');
-    const cardContractorEdit: Element | null = document.querySelector('#card-contractor-edit');
-    modalEditContractor?.classList.toggle('hidden');
-    cardContractorEdit?.classList.toggle('hidden');
+    const modalEditProject: Element | null = document.querySelector('#modal-edit-project');
+    const cardProjectEdit: Element | null = document.querySelector('#card-project-edit');
+    modalEditProject?.classList.toggle('hidden');
+    cardProjectEdit?.classList.toggle('hidden');
 
-    // request.getContractor(id)
-    //   .then( resp => {
-    //     // console.log('data: ', resp);
-        
-    //     showModalEditContractor(resp);
-    //   }).catch( error => {
-    //     console.error(error);
-    //   }).finally( () => {
-    //     console.log('Empleado consultado');
-    //   });
+    request.getProject(id)
+      .then( resp => {
+        showModalEditProject(resp);
+      }).catch( error => {
+        console.error(error);
+      }).finally( () => {
+        console.log('Empleado consultado');
+      });
   });
 
   /**

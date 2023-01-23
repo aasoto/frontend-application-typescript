@@ -2,9 +2,10 @@ import { Projects } from "../../interfaces/projects";
 import { tHeadersProject } from "../../prelim-data/data";
 import { checkCircle } from "../../prelim-data/icons";
 import { EmployeeProjectRequest } from "../../requests/EmployeeProjectRequest";
+import { assigmentSuccess } from "./alertsEmployee";
 import { makeTableEmployees } from "./table-employees";
 
-export const showModalAssignProject = (data: Projects, id: number): void => {
+export const showModalAssignProject = (data: Projects, employeeID: number): void => {
 
   const projectsListAssign = document.getElementById('projects-list-assign');
 
@@ -57,7 +58,7 @@ export const showModalAssignProject = (data: Projects, id: number): void => {
 
     const colActions = document.createElement('td');
     const divActions = document.createElement('div');
-    const divActionsFull = createBtnActions(divActions, id);
+    const divActionsFull = createBtnActions(divActions, employeeID, id);
     colActions.appendChild(divActionsFull);
     tRow.append(colTitle, colStartExecution, colEndExecution, colContractorCompany, colActions);
   });
@@ -92,7 +93,7 @@ export const showModalAssignProject = (data: Projects, id: number): void => {
 }
 
 
-const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement => {
+const createBtnActions = (action: HTMLDivElement, employeeID: number, projectID: number): HTMLDivElement => {
   action.classList.add('td-actions');
   /**
    * BOTÓN ASIGNAR PROYECTO
@@ -103,20 +104,9 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
   btnAddProject.title = 'Asignar projecto a empleado';
   //btnWatch.setAttribute('id-employee', `${id}`);
   btnAddProject.addEventListener('click', event => {
-    const modalAddEmployeeProject: Element | null = document.querySelector('#modal-add-employe-project');
-    const cardEmployeeProjectAdd: Element | null = document.querySelector('#card-employee-project-add');
-    modalAddEmployeeProject?.classList.toggle('hidden');
-    cardEmployeeProjectAdd?.classList.toggle('hidden');
 
     const interception = new EmployeeProjectRequest();
-    interception.getProjects()
-      .then(resp => {
-        showModalAssignProject(resp, id);
-      }).catch(error => {
-        console.error(error);
-      }).finally(() => {
-        console.log('Proyectos consultados');
-      });
+    interception.saveAssigment(employeeID, projectID);
   });
 
   action.appendChild(btnAddProject);

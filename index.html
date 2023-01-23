@@ -69,11 +69,14 @@
                 @apply flex justify-center items-center gap-2
             }
             /***********************************/
+            .btn-add {
+                @apply rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700 scale-100 hover:scale-105 transition duration-200 font-semibold
+            }
             .btn-primary {
                 @apply rounded-lg bg-blue-600 p-1 text-white hover:bg-blue-700 scale-100 hover:scale-105 transition duration-200
             }
             .btn-success {
-                @apply rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700 scale-100 hover:scale-105 transition duration-200 font-semibold
+                @apply rounded-lg bg-green-600 p-1 text-white hover:bg-green-700 scale-100 hover:scale-105 transition duration-200 font-semibold
             }
             .btn-warning {
                 @apply rounded-lg bg-yellow-400 p-1 text-black hover:bg-yellow-500 scale-100 hover:scale-105 transition duration-200
@@ -217,7 +220,7 @@
                 <div class="card mt-6">
                     <div class="header-primary">Listado de empleados</div>
                     <div class="body">
-                        <button id="add-employee" class="btn-success mb-3">
+                        <button id="add-employee" class="btn-add mb-3">
                             <div class="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-3">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -278,6 +281,30 @@
             </div>
             <div class="footer">
                 <div id="footer-add" class="flex justify-end items-center">
+                    
+                </div>
+            </div>
+        </div>
+        <div id="modal-add-employe-project" class="absolute hidden top-0 z-20 flex justify-center items-center w-full h-full bg-black/25">
+        </div>
+        <div id="card-employee-project-add" class="fixed hidden z-30 inset-x-0 top-14 mx-auto card w-2/3">
+            <div class="header-success">
+                <div class="grid grid-cols-12 gap-3">
+                    <div class="col-span-11">
+                        <h1>Asignar proyecto a empleado</h1>
+                    </div>
+                    <div class="col-span-1">
+                        <svg id="close-add-employee-project" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer font-bold">
+                            <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                        </svg>                          
+                    </div>
+                </div>
+            </div>
+            <div id="projects-list-assign" class="body">
+                
+            </div>
+            <div class="footer">
+                <div id="footer-employee-project-add" class="flex justify-end items-center">
                     
                 </div>
             </div>

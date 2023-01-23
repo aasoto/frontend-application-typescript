@@ -1,27 +1,29 @@
 import { Employees } from "../../interfaces/employees";
 import { genders, tHeaders } from "../../prelim-data/data";
-import { eye, pencilSquare, trash } from "../../prelim-data/icons";
+import { eye, pencilSquare, plus, trash } from "../../prelim-data/icons";
 import { deleteSuccess } from "./alertsEmployee";
 import { showModalEditEmployee } from "./modal-edit-employee";
 import { showModalEmployee } from "./modal-employee";
 import { EmployeeRequest } from '../../requests/EmployeeRequest';
 import { showModalDelete } from './modal-delete-employee';
+import { showModalAssignProject } from './modal-assign-project';
+import { EmployeeProjectRequest } from "../../requests/EmployeeProjectRequest";
 
 const request = new EmployeeRequest();
 
 export const makeTableEmployees = (url: string = 'http://127.0.0.1:8000/api/employee') => {
   request.getEmployees(url)
-  .then(resp => {
-    showEmployees(resp);
-  }).catch(error => {
-    console.error(error);
-  }).finally(() => {
-    console.log('Consulta terminada...');
-  });
+    .then(resp => {
+      showEmployees(resp);
+    }).catch(error => {
+      console.error(error);
+    }).finally(() => {
+      console.log('Consulta terminada...');
+    });
 }
 
-const showEmployees = (data: Employees):void => {
-  
+const showEmployees = (data: Employees): void => {
+
   const cardBodyEmployees = document.getElementById('employees-list');
 
   /** Borrar elementos del cuerpo de la card */
@@ -49,13 +51,13 @@ const showEmployees = (data: Employees):void => {
 
   data.data.forEach(element => {
     const {
-      id, 
+      id,
       cc,
-      first_name, 
-      second_name, 
-      last_name, 
-      second_last_name, 
-      gender, 
+      first_name,
+      second_name,
+      last_name,
+      second_last_name,
+      gender,
       birthdate
     } = element;
 
@@ -85,9 +87,9 @@ const showEmployees = (data: Employees):void => {
   pagination.classList.add('line-center-items');
   pagination.classList.add('mt-5')
   cardBodyEmployees?.appendChild(pagination);
-  
+
   data.links.forEach(element => {
-    const {url, label, active} = element;
+    const { url, label, active } = element;
 
     const button: HTMLButtonElement = document.createElement('button');
     pagination.appendChild(button);
@@ -111,7 +113,7 @@ const showEmployees = (data: Employees):void => {
 const getGender = (gender: string): string => {
   let found: string = '';
   genders.forEach(element => {
-    const {value, text} = element;
+    const { value, text } = element;
     if (value == gender) {
       found = text;
     }
@@ -136,12 +138,37 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
     cardEmployeeInfo?.classList.toggle('hidden');
 
     request.getEmployee(id)
-      .then( resp => {
+      .then(resp => {
         showModalEmployee(resp);
-      }).catch( error => {
+      }).catch(error => {
         console.error(error);
-      }).finally( () => {
+      }).finally(() => {
         console.log('Empleado consultado');
+      });
+  });
+
+  /**
+   * BOTÓN ASIGNAR PROYECTO
+   */
+  const btnAddProject = document.createElement('button');
+  btnAddProject.classList.add('btn-success');
+  btnAddProject.innerHTML = plus;
+  btnAddProject.title = 'Asignar projecto a empleado';
+  //btnWatch.setAttribute('id-employee', `${id}`);
+  btnAddProject.addEventListener('click', event => {
+    const modalAddEmployeeProject: Element | null = document.querySelector('#modal-add-employe-project');
+    const cardEmployeeProjectAdd: Element | null = document.querySelector('#card-employee-project-add');
+    modalAddEmployeeProject?.classList.toggle('hidden');
+    cardEmployeeProjectAdd?.classList.toggle('hidden');
+
+    const interception = new EmployeeProjectRequest();
+    interception.getProjects()
+      .then(resp => {
+        showModalAssignProject(resp, id);
+      }).catch(error => {
+        console.error(error);
+      }).finally(() => {
+        console.log('Proyectos consultados');
       });
   });
 
@@ -166,11 +193,11 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
     cardEmployeeEdit?.classList.toggle('hidden');
 
     request.getEmployee(id)
-      .then( resp => {
+      .then(resp => {
         showModalEditEmployee(resp);
-      }).catch( error => {
+      }).catch(error => {
         console.error(error);
-      }).finally( () => {
+      }).finally(() => {
         console.log('Empleado consultado');
       });
   });
@@ -186,7 +213,7 @@ const createBtnActions = (action: HTMLDivElement, id: number): HTMLDivElement =>
     showModalDelete(id);
   });
 
-  action.append(btnWatch, btnEdit, btnDelete);
+  action.append(btnWatch, btnAddProject, btnEdit, btnDelete);
 
   return action;
 }

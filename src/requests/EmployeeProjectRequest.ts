@@ -2,12 +2,27 @@ import axios from "axios";
 import { assigmentSuccess } from "../forms/employee/alertsEmployee";
 import { interceptionEmployeeProject } from "../interfaces/interception-employee-project";
 import { Projects } from "../interfaces/projects";
+import { ProjectsAssigned } from "../interfaces/projectsAssigned";
 
 export class EmployeeProjectRequest {
   
-  async getProjects(url: string = 'http://127.0.0.1:8000/api/projects'): Promise<Projects> {
+  async getProjects (url: string = 'http://127.0.0.1:8000/api/projects'): Promise<Projects> {
 
     const response = await axios.get<Projects>(url);
+    return response.data;
+  }
+
+  async isAssigned(employeeID: number, projectID: number): Promise<boolean> {
+
+    const ids: number[] = [employeeID, projectID];
+    const response = await axios.get<boolean>(`http://127.0.0.1:8000/api/is-assigned/${JSON.stringify(ids)}`);
+    return response.data;
+
+  }
+
+  async getProjectsAssigned (id: number): Promise<ProjectsAssigned> {
+
+    const response = await axios.get<ProjectsAssigned>(`http://127.0.0.1:8000/api/employee-project/${id}`);
     return response.data;
   }
 

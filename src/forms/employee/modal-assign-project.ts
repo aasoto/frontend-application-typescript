@@ -2,7 +2,7 @@ import { Projects } from "../../interfaces/projects";
 import { tHeadersProject } from "../../prelim-data/data";
 import { checkCircle } from "../../prelim-data/icons";
 import { EmployeeProjectRequest } from "../../requests/EmployeeProjectRequest";
-import { assigmentSuccess } from "./alertsEmployee";
+import { assigmentSuccess, assigmentFailed } from './alertsEmployee';
 import { makeTableEmployees } from "./table-employees";
 
 export const showModalAssignProject = (data: Projects, employeeID: number): void => {
@@ -106,7 +106,16 @@ const createBtnActions = (action: HTMLDivElement, employeeID: number, projectID:
   btnAddProject.addEventListener('click', event => {
 
     const interception = new EmployeeProjectRequest();
-    interception.saveAssigment(employeeID, projectID);
+
+    interception.isAssigned(employeeID, projectID)
+    .then( resp => {
+      if (resp) {
+        assigmentFailed();
+      } else {
+        interception.saveAssigment(employeeID, projectID);
+      }
+    });
+
   });
 
   action.appendChild(btnAddProject);

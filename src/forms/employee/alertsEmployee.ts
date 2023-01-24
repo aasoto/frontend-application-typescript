@@ -102,6 +102,56 @@ export const assigmentSuccess = (): void => {
   });
 }
 
+export const assigmentFailed = (): void => {
+  
+  const projectListAssign = document.getElementById('projects-list-assign');
+  while (projectListAssign?.firstChild) {
+    projectListAssign.removeChild(projectListAssign.firstChild);
+  }
+
+  const alertSuccess = `
+  <div class="flex flex-col justify-center items-center gap-7">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-40 h-40 text-red-600">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+    </svg>
+    <div class="flex flex-col justify-center items-center gap-4">
+      <h1 class="text-gray-900 font-bold text-3xl text-center">
+        Este proyecto ya fue asignado a este empleado.
+      </h1>
+      <p class="text-center text-gray-600">
+        Para seguir haciendo más asignaciones cierre este modal y cliquee el botón nuevamente.
+      </p>
+    </div>                 
+  </div>
+  `;
+
+  if (projectListAssign) {
+    projectListAssign.innerHTML = alertSuccess;
+  }
+
+  const footerAdd = document.getElementById('footer-employee-project-add');
+  while (footerAdd?.firstChild) {
+    footerAdd.removeChild(footerAdd.firstChild);
+  }
+
+  const btnClose = `<button id="close-add-employee-project-button" class="px-5 py-3 rounded-md bg-red-600 text-white font-bold">
+    Cerrar
+  </button>
+  `;
+
+  if (footerAdd) {
+    footerAdd.innerHTML = btnClose;
+  }
+
+  const btnCloseCreated: Element | null = document.querySelector('#close-add-employee-project-button');
+  btnCloseCreated?.addEventListener('click', event => {
+    const modalAddEmployeeProject: Element | null = document.querySelector('#modal-add-employe-project');
+    const cardEmployeeProjectAdd: Element | null = document.querySelector('#card-employee-project-add');
+    modalAddEmployeeProject?.classList.toggle('hidden');
+    cardEmployeeProjectAdd?.classList.toggle('hidden');
+  });
+}
+
 
 export const editSuccess = (): void => {
   

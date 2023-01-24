@@ -5,6 +5,8 @@ export const tHeadersContractor = ['NIT', 'Razón social', 'País', 'Etiquetas',
 
 export const tHeadersProject = ['Título', 'Inicio', 'Final', 'Emp. contratista', 'Acciones'];
 
+export const tHeadersProjectAssigned = ['Título', 'Inicio', 'Final', 'Emp. contratista'];
+
 type Genders = {
   value: string;
   text: string;

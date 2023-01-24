@@ -1,5 +1,7 @@
 import { Employee } from "../../interfaces/employee";
-import { genders } from "../../prelim-data/data";
+import { genders, tHeadersProjectAssigned } from "../../prelim-data/data";
+import { EmployeeProjectRequest } from "../../requests/EmployeeProjectRequest";
+import { ProjectsAssigned } from '../../interfaces/projectsAssigned';
 
 export const makeTableEmployee = (data: Employee): HTMLTableElement => {
   const {
@@ -140,6 +142,65 @@ export const makeTableEmployee = (data: Employee): HTMLTableElement => {
 
   row6.append(cellCC, cellGender, cellBirthdate, cellAge);
   
+  return table;
+}
+
+export const projectsAssigned = (data: Employee, div: HTMLDivElement): void => {
+  const interception = new EmployeeProjectRequest();
+
+  interception.getProjectsAssigned(data.id)
+  .then( resp => {
+    div.appendChild(makeTableProjectsAssigned(resp));
+  }).catch( error => {
+    console.error(error);
+  });
+}
+
+const makeTableProjectsAssigned = (data: ProjectsAssigned): HTMLTableElement => {
+  const table: HTMLTableElement = document.createElement('table');
+  table.classList.add('table-employee');
+  table.classList.add('mt-10');
+
+  const tHead: HTMLTableSectionElement = document.createElement('thead');
+  table.appendChild(tHead);
+
+  tHeadersProjectAssigned.forEach(element => {
+    const tHTitle = document.createElement('th');
+    tHTitle.classList.add('cell-head');
+    tHTitle.textContent = element;
+    tHead.appendChild(tHTitle);
+  });
+
+  const tBody: HTMLTableSectionElement = document.createElement('tbody');
+  table.appendChild(tBody);
+  data.data.forEach(element => {
+    const tRow: HTMLTableRowElement = tr();
+    tBody.appendChild(tRow);
+
+    const {title, start_execution, end_execution, contractor_company_id} = element.project;
+
+    const cellTitle: HTMLTableCellElement = td();
+    cellTitle.classList.add('cell');
+    cellTitle.id = 'employee-title';
+    cellTitle.textContent = title;
+
+    const cellStartExecution: HTMLTableCellElement = td();
+    cellStartExecution.classList.add('cell');
+    cellStartExecution.id = 'employee-start-execution';
+    cellStartExecution.textContent = start_execution.toString();
+
+    const cellEndExecution: HTMLTableCellElement = td();
+    cellEndExecution.classList.add('cell');
+    cellEndExecution.id = 'employee-end-execution';
+    cellEndExecution.textContent = end_execution.toString();
+
+    const cellContractorCompany: HTMLTableCellElement = td();
+    cellContractorCompany.classList.add('cell');
+    cellContractorCompany.id = 'employee-contractor-company';
+    cellContractorCompany.textContent = contractor_company_id.toString();
+
+    tRow.append(cellTitle, cellStartExecution, cellEndExecution, cellContractorCompany);
+  });
   return table;
 }
 

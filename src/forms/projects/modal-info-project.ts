@@ -2,6 +2,8 @@ import { Project } from "../../interfaces/project";
 import { EmployeeProjectRequest } from "../../requests/EmployeeProjectRequest";
 import { ProjectsAssigned } from '../../interfaces/projectsAssigned';
 import { tHeadersEmployeeAssigned } from '../../prelim-data/data';
+import { trash } from "../../prelim-data/icons";
+import { deleteAssigmentSuccess } from "./alertsProjects";
 
 const projectInfo = document.getElementById('project-info');
 
@@ -157,7 +159,35 @@ const makeTableEmployeeAssigned = (data: ProjectsAssigned) => {
     tName.classList.add('cell');
     tName.textContent = first_name + ' ' + (second_name+' ' || '') + last_name + ' ' + (second_last_name || '');
 
-    tRow.append(tID, tCC, tName);
+    const tActions = td();
+    tActions.classList.add('cell');
+    
+    const btnDelete = document.createElement('button');
+    tActions.appendChild(btnDelete);
+    btnDelete.classList.add('btn-danger');
+    btnDelete.innerHTML = trash;
+    btnDelete.title = 'Eliminar empleado del proyecto';
+    btnDelete.addEventListener('click', event => {
+      const request = new EmployeeProjectRequest();
+      request.delete(id)
+      .then(resp => {
+
+        if (resp.status == 'deleted') {
+          deleteAssigmentSuccess();
+        } else {
+          console.log(resp);
+        }
+
+      }).catch(error => {
+        console.error(error);
+        
+      }).finally(()=>{
+        console.log('eliminación de asignación terminada...');
+
+      });
+    });
+
+    tRow.append(tID, tCC, tName, tActions);
   });
 
   projectInfo?.appendChild(table);

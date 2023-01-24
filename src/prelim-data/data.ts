@@ -1,7 +1,7 @@
 
 export const tHeaders = ['ID', 'Num. Identificación', 'Nombres', 'Genero', 'Fec. Nacimiento', 'Acciones'];
 
-export const tHeadersEmployeeAssigned = ['ID', 'Num. Identificación', 'Nombres'];
+export const tHeadersEmployeeAssigned = ['ID', 'Num. Identificación', 'Nombres', 'Acciones'];
 
 export const tHeadersContractor = ['NIT', 'Razón social', 'País', 'Etiquetas', 'Telefono', 'Acciones'];
 

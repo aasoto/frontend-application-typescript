@@ -3,6 +3,7 @@ import { assigmentSuccess } from "../forms/employee/alertsEmployee";
 import { interceptionEmployeeProject } from "../interfaces/interception-employee-project";
 import { Projects } from "../interfaces/projects";
 import { ProjectsAssigned } from "../interfaces/projectsAssigned";
+import { StatusDeleted } from "../interfaces/statusEmployee";
 
 export class EmployeeProjectRequest {
   
@@ -59,5 +60,11 @@ export class EmployeeProjectRequest {
       console.log('Guardado terminado')
     });
   
+  }
+
+  async delete (id: number): Promise<StatusDeleted> {
+    const {data} = await axios.delete<StatusDeleted>(`http://127.0.0.1:8000/api/delete-assigment/${id}`);
+  
+    return data;
   }
 }

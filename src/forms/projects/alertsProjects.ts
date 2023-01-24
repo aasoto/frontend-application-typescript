@@ -158,3 +158,53 @@ export const deleteSuccess = (): void => {
     cardProjectDeleted?.classList.toggle('hidden');
   });
 }
+
+export const deleteAssigmentSuccess = (): void => {
+
+  const modalInfoProject: Element | null = document.querySelector('#modal-info-project');
+  const cardProjectInfo: Element | null = document.querySelector('#card-project-info');
+
+  const projectInfo = document.getElementById('project-info');
+  while (projectInfo?.firstChild) {
+    projectInfo.removeChild(projectInfo.firstChild);
+  }
+
+  const alertSuccess = `
+  <div class="flex flex-col justify-center items-center gap-7">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-40 h-40 text-green-600">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <div class="flex flex-col justify-center items-center gap-4">
+      <h1 class="text-gray-900 font-bold text-3xl text-center">
+        La asignación ha sido retirada con exito.
+      </h1>
+    </div>
+  </div>
+  `;
+
+  if (projectInfo) {
+    projectInfo.innerHTML = alertSuccess;
+  }
+
+  const footerInfo = document.getElementById('footer-project-info');
+  while (footerInfo?.firstChild) {
+    footerInfo.removeChild(footerInfo.firstChild);
+  }
+
+  const btnClose = `
+  <button id="close-info-project-button" class="px-5 py-3 rounded-md bg-red-600 text-white font-bold">
+    Cerrar
+  </button>
+  `;
+
+  if (footerInfo) {
+    footerInfo.innerHTML = btnClose;
+  }
+
+  const btnCloseInfo: Element | null = document.querySelector('#close-info-project-button');
+  btnCloseInfo?.addEventListener('click', event => {
+    modalInfoProject?.classList.toggle('hidden');
+    cardProjectInfo?.classList.toggle('hidden');
+  });
+}
+

@@ -1,4 +1,7 @@
 import { Project } from "../../interfaces/project";
+import { EmployeeProjectRequest } from "../../requests/EmployeeProjectRequest";
+import { ProjectsAssigned } from '../../interfaces/projectsAssigned';
+import { tHeadersEmployeeAssigned } from '../../prelim-data/data';
 
 const projectInfo = document.getElementById('project-info');
 
@@ -9,6 +12,14 @@ export const showModalProject = (data: Project) => {
   }
 
   makeTableContractor(data);
+
+  const request = new EmployeeProjectRequest();
+  request.getEmployeesAssigned(<number>data.id)
+  .then( resp => {
+    makeTableEmployeeAssigned(resp);
+  }).catch( error => {
+    console.error('error al consultar empleados asignados al proyecto.');
+  });
 }
 
 
@@ -105,6 +116,49 @@ const makeTableContractor = (data: Project): void => {
   contractor_company? cellContractorCompany.textContent = contractor_company.business_name : cellContractorCompany.textContent = '';
 
   row6.append(cellStartExecution, cellEndExecution, cellContractorCompany);
+
+  projectInfo?.appendChild(table);
+}
+
+const makeTableEmployeeAssigned = (data: ProjectsAssigned) => {
+  const table: HTMLTableElement = document.createElement('table');
+  table.classList.add('table-employee');
+  table.classList.add('mt-10');
+
+  const tHead = document.createElement('thead');
+  table.appendChild(tHead);
+
+  tHeadersEmployeeAssigned.forEach( element => {
+    const tHCell = document.createElement('th');
+    tHCell.classList.add('cell-head');
+    tHCell.textContent = element;
+
+    tHead.appendChild(tHCell);
+  });
+
+  const tBody = document.createElement('tbody');
+  table.appendChild(tBody);
+
+  data.data.forEach( element => {
+    const tRow = tr();
+    tBody.appendChild(tRow);
+
+    const {id, cc, first_name, second_name, last_name, second_last_name} = element.employee;
+    
+    const tID = td();
+    tID.classList.add('cell');
+    tID.textContent = id.toString();
+
+    const tCC = td();
+    tCC.classList.add('cell');
+    tCC.textContent = cc;
+
+    const tName = td();
+    tName.classList.add('cell');
+    tName.textContent = first_name + ' ' + (second_name+' ' || '') + last_name + ' ' + (second_last_name || '');
+
+    tRow.append(tID, tCC, tName);
+  });
 
   projectInfo?.appendChild(table);
 }

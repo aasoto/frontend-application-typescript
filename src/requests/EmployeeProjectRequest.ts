@@ -26,6 +26,12 @@ export class EmployeeProjectRequest {
     return response.data;
   }
 
+  async getEmployeesAssigned (id: number): Promise<ProjectsAssigned> {
+
+    const response = await axios.get<ProjectsAssigned>(`http://127.0.0.1:8000/api/project-employee/${id}`);
+    return response.data;
+  }
+
   async saveAssigment(employeeID: number, projectID: number) {
 
     const data: interceptionEmployeeProject = {
